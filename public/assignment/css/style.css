@@ -3,7 +3,8 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 nav.navbar.navbar-default.navbar-fixed-top{
     padding-right: 15px;
