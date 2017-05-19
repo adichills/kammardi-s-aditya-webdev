@@ -23,8 +23,8 @@ nav.navbar.navbar-default.navbar-fixed-bottom{
 
 
 .navbar-default{
-    background-color: burlywood;
-    border-color: burlywood;
+    background-color: #222222;
+    border-color: #080808;
 }
 
 .navbar-default .navbar-brand {
@@ -45,8 +45,8 @@ nav.navbar.navbar-default.navbar-fixed-bottom{
 .wd-padding-right-15px{
     padding-right: 15px;
 }
-.wd-active-brown-bg{
-    background-color: #b78833;
+.wd-active-cornflowerblue-bg{
+    background-color: cornflowerblue;
 }
 
 .wd-widget {
