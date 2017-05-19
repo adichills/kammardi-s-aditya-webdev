@@ -69,11 +69,11 @@ nav.navbar.navbar-default.navbar-fixed-bottom{
 }
 
 .wd-widget-video-container{
+
     position: relative;
     padding-bottom: 56.25%;
-    padding-top: 30px;
     height: 0;
-    overflow: hidden;
+    z-index: -1;
 }
 
 .wd-widget-video-container iframe{
