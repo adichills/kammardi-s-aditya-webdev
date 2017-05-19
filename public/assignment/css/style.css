@@ -1,4 +1,6 @@
-input.form-control {
+input.form-control,
+textarea,
+select{
     margin-bottom: 5px;
 }
 
@@ -8,4 +10,54 @@ body {
 }
 nav.navbar.navbar-default.navbar-fixed-top{
     padding-right: 15px;
+}
+
+nav.navbar.navbar-default.navbar-fixed-bottom{
+    padding-right: 15px;
+}
+
+
+
+.navbar-default{
+    background-color: burlywood;
+    border-color: burlywood;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.navbar-header{
+    width:100%
+}
+
+.navbar-default .navbar-link{
+    color:#ffffff;
+}
+
+.navbar.navbar-default a{
+    color:#ffffff;
+}
+
+.wd-padding-right-15px{
+    padding-right: 15px;
+}
+.wd-active-brown-bg{
+    background-color: #b78833;
+}
+
+.wd-widget {
+    margin-bottom: 10px;
+}
+
+.wd-widget > img {
+    width: 100%;
+}
+
+.wd-widget > .wd-widget-toolbar {
+    position: absolute;
+    right: 15px;
+    background: white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
 }
