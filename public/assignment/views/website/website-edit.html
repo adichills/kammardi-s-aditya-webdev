@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 </head>
 <body>
@@ -15,14 +15,14 @@
         <div class="row">
 
             <div class="col-sm-4 hidden-xs">
-                <a href="page-list.html" class="navbar-link wd-navbar-back pull-left">
+                <a href="website-list.html" class="navbar-link wd-navbar-back pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand" href="#">
-                    Pages
+                    Websites
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="page-new.html" class="navbar-link">
+                    <a href="website-new.html" class="navbar-link">
                         <span class="glyphicon glyphicon-plus ">
                         </span>
                     </a>
@@ -30,12 +30,12 @@
             </div>
 
             <div class="col-sm-8 col-xs-12">
-                <a href="page-list.html" class="navbar-link wd-navbar-back pull-left visible-xs">
+                <a href="website-list.html" class="navbar-link wd-navbar-back pull-left visible-xs">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <p class="navbar-text pull-left">Edit Page</p>
+                <p class="navbar-text pull-left">Edit Website</p>
                 <p class="navbar-text pull-right">
-                    <a href="page-list.html" class="navbar-link">
+                    <a href="website-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok ">
                         </span>
                     </a>
@@ -61,7 +61,7 @@
                         <div class = "col-md-3 hidden-sm hidden-xs" >
                             Updated
                         </div>
-                        <div class="col-xs-1">
+                        <div class="col-xs-1 col-md-2">
 
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../widget/widget-list.html">  Cras justo odio</a>
+                            <a href="../page/page-list.html">  Cras justo odio</a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
                             1/2/2017
@@ -78,7 +78,7 @@
                             2/2/2017
                         </div>
                         <div class="col-xs-1">
-                            <a href="page-edit.html">
+                            <a href="website-edit.html">
                                 <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -88,7 +88,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="page-list.html">Dapibus ac facilisis in</a>
+                            <a href="../page/page-list.html">Dapibus ac facilisis in</a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
                             1/2/2017
@@ -97,7 +97,7 @@
                             2/2/2017
                         </div>
                         <div class="col-xs-1">
-                            <a href="page-edit.html">
+                            <a href="website-edit.html">
                                 <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -113,13 +113,12 @@
                    value="Blogger"
                    class="form-control"/>
 
-            <label for="title">Title</label>
-            <input id ="title"
-                   placeholder="What is the secret of success ??"
-                   value="Page Title"
-                   class="form-control">
-
-            <a href="page-list.html" class="btn btn-block btn-danger">Delete</a>
+            <label for="description">Description</label>
+            <textarea id="description"
+                      placeholder="Describe in 200 words"
+                      rows="5"
+                      class="form-control">Lorem Ipsum ,hah hahahahahahahahahahahaha</textarea>
+            <a href="website-list.html" class="btn btn-block btn-danger">Delete</a>
         </div>
     </div>
 
@@ -131,14 +130,12 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html">
+                <a href="../user/templates/profile.view.client.html">
                     <span class="glyphicon glyphicon-user"></span>
           </span>
                 </a>
             </p>
-
         </div>
-
     </div>
 </nav>
 
