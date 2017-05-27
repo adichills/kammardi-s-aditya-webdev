@@ -3,7 +3,7 @@
         <div class="row">
 
             <div class="col-sm-4 hidden-xs">
-                <a href="website-list.html" class="navbar-link wd-navbar-back pull-left">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link wd-navbar-back pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand" href="#">
@@ -18,12 +18,12 @@
             </div>
 
             <div class="col-sm-8 col-xs-12">
-                <a href="website-list.html" class="navbar-link wd-navbar-back pull-left visible-xs">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link wd-navbar-back pull-left visible-xs">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <p class="navbar-text pull-left">Edit Website</p>
                 <p class="navbar-text pull-right">
-                    <a href="website-list.html" class="navbar-link">
+                    <a ng-click="model.updateWebsite(editWebsiteId,editWebsite)" class="navbar-link">
                         <span class="glyphicon glyphicon-ok ">
                         </span>
                     </a>
@@ -54,16 +54,18 @@
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
+                <li ng-repeat="website in model.websites" class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../../page/page-list.html">  Cras justo odio</a>
+                            <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                                {{website.name}}
+                            </a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
-                            1/2/2017
+                            {{website.created | date:'shortDate'}}
                         </div>
                         <div class = "col-md-3 hidden-sm hidden-xs" >
-                            2/2/2017
+                            {{website.accessed | date:'shortDate'}}
                         </div>
                         <div class="col-xs-1">
                             <a href="#!/user/{{model.userId}}/website/{{website._id}}">
@@ -73,24 +75,7 @@
                     </div>
                 </li>
 
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../../page/page-list.html">Dapibus ac facilisis in</a>
-                        </div>
-                        <div class ="col-lg-3 visible-lg">
-                            1/2/2017
-                        </div>
-                        <div class = "col-md-3 hidden-sm hidden-xs" >
-                            2/2/2017
-                        </div>
-                        <div class="col-xs-1">
-                            <a href="website-edit.html">
-                                <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+
 
             </ul>
         </div>
@@ -121,9 +106,9 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../../user/templates/profile.view.client.html">
+                <a href="#!/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
-          </span>
+
                 </a>
             </p>
         </div>

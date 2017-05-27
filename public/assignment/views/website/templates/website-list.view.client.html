@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-fixed-top wd-padding-left-15px">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="../../user/templates/profile.view.client.html" class="navbar-link pull-left wd-navbar-back">
+            <a href="#!/user/{{model.userId}}" class="navbar-link pull-left wd-navbar-back">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand" href="#">
@@ -10,7 +10,7 @@
             </a>
 
             <p class="navbar-text pull-right">
-                <a href="website-new.html" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
           <span class="glyphicon glyphicon-plus">
           </span>
                 </a>
@@ -40,15 +40,15 @@
         <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-10">
-                    <a href="../../page/page-list.html">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
                         {{website.name}}
                     </a>
                 </div>
                 <div class ="col-lg-3 visible-lg">
-                    {{website.created | date}}
+                    {{website.created | date:'shortDate'}}
                 </div>
                 <div class = "col-md-3 hidden-sm hidden-xs" >
-                    {{website.accessed | date}}
+                    {{website.accessed | date:'shortDate'}}
                 </div>
                 <div class="col-xs-1">
                     <a href="#!/user/{{model.userId}}/website/{{website._id}}">
@@ -68,9 +68,9 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../../user/templates/profile.view.client.html">
+                <a href="#!/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
-                    </span>
+
                 </a>
             </p>
         </div>

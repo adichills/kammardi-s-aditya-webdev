@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="row">
 
             <div class="col-sm-4 hidden-xs">
-                <a href="page-list.html" class="navbar-link wd-navbar-back pull-left">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand" href="#">
-                    Pages
+                    New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="page-new.html" class="navbar-link">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                         <span class="glyphicon glyphicon-plus ">
                         </span>
                     </a>
@@ -30,12 +18,12 @@
             </div>
 
             <div class="col-sm-8 col-xs-12">
-                <a href="page-list.html" class="navbar-link wd-navbar-back pull-left visible-xs">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left visible-xs">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <p class="navbar-text pull-left">New Page</p>
                 <p class="navbar-text pull-right">
-                    <a href="page-list.html" class="navbar-link">
+                    <a ng-click ="model.createPage(model.newPage)" class="navbar-link">
                         <span class="glyphicon glyphicon-ok ">
                         </span>
                     </a>
@@ -59,50 +47,35 @@
                             Created
                         </div>
                         <div class = "col-md-3 hidden-sm hidden-xs" >
-                            Updated
+                            Accessed
                         </div>
                         <div class="col-xs-1">
 
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
+                <li ng-repeat="page in model.pages" class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../widget/templates/widget-list.html">  Cras justo odio</a>
+                            <a href="../widget/templates/widget-list.html">
+                                {{page.name}}
+                            </a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
-                            1/2/2017
+                            {{page.created | date:'shortDate'}}
                         </div>
                         <div class = "col-md-3 hidden-sm hidden-xs" >
-                            2/2/2017
+                            {{page.accessed | date:'shortDate'}}
                         </div>
                         <div class="col-xs-1">
-                            <a href="page-edit.html">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                                 <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
                     </div>
                 </li>
 
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="page-list.html">Dapibus ac facilisis in</a>
-                        </div>
-                        <div class ="col-lg-3 visible-lg">
-                            1/2/2017
-                        </div>
-                        <div class = "col-md-3 hidden-sm hidden-xs" >
-                            2/2/2017
-                        </div>
-                        <div class="col-xs-1">
-                            <a href="page-edit.html">
-                                <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+
 
             </ul>
         </div>
@@ -110,15 +83,17 @@
             <label for="name">Name</label>
             <input id="name"
                    placeholder="Blog Page 1"
+                   ng-model = "model.newPage.name"
                    class="form-control"/>
             <label for="title">Title</label>
             <input id ="title"
+                   ng-model = "model.newPage.description"
                    placeholder="What is the secret of success ??"
                    class="form-control">
 
 
 
-            <a href="page-list.html" class="btn btn-block btn-danger">Delete</a>
+            <a ng-click="model.createPage(model.newPage)" class="btn btn-block btn-success">Create</a>
         </div>
     </div>
 
@@ -130,7 +105,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/templates/profile.view.client.html">
+                <a href="#!/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
           </span>
                 </a>
@@ -140,6 +115,3 @@
 
     </div>
 </nav>
-
-</body>
-</html>
