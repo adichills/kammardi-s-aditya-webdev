@@ -22,7 +22,11 @@ nav.navbar.navbar-default.navbar-fixed-bottom{
 }
 
 
-.navbar-default{
+.navbar-default > div {
+    background-color: #222222;
+    border-color: #080808;
+}
+.blackBg{
     background-color: #222222;
     border-color: #080808;
 }

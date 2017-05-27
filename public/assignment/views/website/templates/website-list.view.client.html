@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top wd-padding-left-15px">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="../user/templates/profile.view.client.html" class="navbar-link pull-left wd-navbar-back">
+            <a href="../../user/templates/profile.view.client.html" class="navbar-link pull-left wd-navbar-back">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand" href="#">
@@ -48,43 +37,28 @@
                 </div>
             </div>
         </li>
-        <li class="list-group-item">
+        <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-10">
-                    <a href="../page/page-list.html">  Cras justo odio</a>
+                    <a href="../../page/page-list.html">
+                        {{website.name}}
+                    </a>
                 </div>
                 <div class ="col-lg-3 visible-lg">
-                    1/2/2017
+                    {{website.created | date}}
                 </div>
                 <div class = "col-md-3 hidden-sm hidden-xs" >
-                    2/2/2017
+                    {{website.accessed | date}}
                 </div>
                 <div class="col-xs-1">
-                    <a href="website-edit.html">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
                         <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
             </div>
         </li>
 
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-10">
-                    <a href="../page/page-list.html">Dapibus ac facilisis in</a>
-                </div>
-                <div class ="col-lg-3 visible-lg">
-                    1/2/2017
-                </div>
-                <div class = "col-md-3 hidden-sm hidden-xs" >
-                    2/2/2017
-                </div>
-                <div class="col-xs-1">
-                    <a href="website-edit.html">
-                        <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
+
 
     </ul>
 </div>
@@ -94,7 +68,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/templates/profile.view.client.html">
+                <a href="../../user/templates/profile.view.client.html">
                     <span class="glyphicon glyphicon-user"></span>
                     </span>
                 </a>
@@ -103,5 +77,3 @@
     </div>
 </nav>
 
-</body>
-</html>

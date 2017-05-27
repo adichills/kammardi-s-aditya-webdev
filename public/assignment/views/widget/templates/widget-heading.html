@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet"/>
+    <link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../css/style.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 </head>
 <body>
@@ -42,21 +42,17 @@
                   rows="5"
                   class="form-control"></textarea>
 
-    <label for="url">URL</label>
-    <input id="url"
-           placeholder="www.northeastern.edu"
-           class="form-control"/>
+    <label for="size">Size</label>
+        <select id="size" class="form-control">
+            <option>1 (X-Large)</option>
+            <option>2 (Larger)</option>
+            <option>3 (Large)</option>
+            <option>4 (Medium)</option>
+            <option>5 (Small)</option>
+            <option>6 (Smallest)</option>
+        </select>
 
 
-    <label for="width">Width</label>
-        <input id="width"
-        placeholder="100px"
-        class="form-control"/>
-
-    <label for="file">Upload</label>
-    <input id="file" multiple type="file" class="form-control"/>
-
-    <a href="widget-list.html" class="btn btn-block btn-info">Upload</a>
 
     <a href="widget-list.html" class="btn btn-block btn-danger">Delete</a>
 
@@ -67,7 +63,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/templates/profile.view.client.html">
+                <a href="../../user/templates/profile.view.client.html">
                     <span class="glyphicon glyphicon-user"></span>
           </span>
                 </a>

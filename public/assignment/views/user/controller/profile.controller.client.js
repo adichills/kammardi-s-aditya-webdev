@@ -9,10 +9,16 @@
     function profileController($location,$routeParams,userService) {
 
         var model = this;
-        var userId = $routeParams['userId'];
+        model.userId = $routeParams['userId'];
 
-        model.user = userService.findUserByUserId(userId);
+        model.updateUser = updateUser;
 
+        model.user = userService.findUserByUserId(model.userId);
+
+
+        function updateUser(userId,user) {
+            userService.updateUser(userId,user);
+        }
 
     }
 })()

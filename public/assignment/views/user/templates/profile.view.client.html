@@ -1,11 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+
+<nav class="navbar navbar-default navbar-fixed-top wd-padding-left-15px">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 Profile
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/profile" class="navbar-link">
+                <a ng-click="model.updateUser(model.userId,model.user)" class="navbar-link">
           <span class="glyphicon glyphicon-ok ">
           </span>
                 </a>
@@ -57,12 +58,12 @@
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="../../website/website-list.html">Websites</a>
+       href="#!/user/{{model.userId}}/website">Websites</a>
     <a class="btn btn-danger  btn-block"
        href="#!/login">Logout</a>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom wd-padding-left-15px">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">

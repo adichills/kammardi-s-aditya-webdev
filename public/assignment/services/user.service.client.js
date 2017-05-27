@@ -13,9 +13,42 @@
 
         var api = {
             findUserByUserId:findUserByUserId,
-            findUserByCredentials:findUserByCredentials
+            findUserByCredentials:findUserByCredentials,
+            findUserByUsername:findUserByUsername,
+            createUser:createUser,
+            updateUser:updateUser
+
         };
         return api;
+
+        function updateUser(userId,user){
+            for (var u in users){
+                if(users[u]._id===userId){
+                    users[u].username = user.username;
+                    users[u].password = user.password;
+                    users[u].firstName = user.firstName;
+                    users[u].lastName = user.lastName;
+                }
+            }
+
+        }
+
+        function createUser(user) {
+            user._id = (new Date()).getTime() + "";
+            user.created = new Date();
+            users.push(user);
+            return user;
+        }
+
+        function findUserByUsername(username) {
+            var user = users.find(function (user) {
+                return user.username === username;
+            });
+            if(typeof user === 'undefined') {
+                return null;
+            }
+            return user;
+        }
 
         function findUserByUserId(userId) {
             for(var u in users){

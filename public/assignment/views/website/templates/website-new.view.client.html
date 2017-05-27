@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="row">
@@ -33,7 +21,7 @@
                 <a href="website-list.html" class="navbar-link wd-navbar-back pull-left visible-xs">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <p class="navbar-text pull-left">Edit Website</p>
+                <p class="navbar-text pull-left">New Website</p>
                 <p class="navbar-text pull-right">
                     <a href="website-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok ">
@@ -61,7 +49,7 @@
                         <div class = "col-md-3 hidden-sm hidden-xs" >
                             Updated
                         </div>
-                        <div class="col-xs-1 col-md-2">
+                        <div class="col-xs-1">
 
                         </div>
                     </div>
@@ -69,7 +57,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../page/page-list.html">  Cras justo odio</a>
+                            <a href="../../page/page-list.html">  Cras justo odio</a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
                             1/2/2017
@@ -88,7 +76,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../page/page-list.html">Dapibus ac facilisis in</a>
+                            <a href="../../page/page-list.html">Dapibus ac facilisis in</a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
                             1/2/2017
@@ -109,16 +97,17 @@
         <div class="col-xs-12 col-sm-8">
             <label for="name">Name</label>
             <input id="name"
-                   placeholder="facebook"
-                   value="Blogger"
-                   class="form-control"/>
+                    ng-model="website.name"
+                    placeholder="facebook"
+                    class="form-control"/>
 
             <label for="description">Description</label>
             <textarea id="description"
-                      placeholder="Describe in 200 words"
+                      ng-model="website.description"
+                      placeholder="Who is not on facebook ?"
                       rows="5"
-                      class="form-control">Lorem Ipsum ,hah hahahahahahahahahahahaha</textarea>
-            <a href="website-list.html" class="btn btn-block btn-danger">Delete</a>
+                      class="form-control"></textarea>
+            <a ng-click="model.createWebsite(website)" class="btn btn-block btn-success">Create</a>
         </div>
     </div>
 
@@ -130,14 +119,12 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/templates/profile.view.client.html">
+                <a href="../../user/templates/profile.view.client.html">
                     <span class="glyphicon glyphicon-user"></span>
           </span>
                 </a>
             </p>
+
         </div>
     </div>
 </nav>
-
-</body>
-</html>
