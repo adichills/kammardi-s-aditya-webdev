@@ -3,9 +3,9 @@
  */
 (function () {
     angular.module('WAM')
-        .controller('widgetChooserController',widgetChooserController);
+        .controller('widgetNewController',widgetNewController);
 
-    function widgetChooserController($routeParams,$location,widgetService,$sce) {
+    function widgetNewController($routeParams,$location,widgetService,$sce) {
         var model = this;
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
