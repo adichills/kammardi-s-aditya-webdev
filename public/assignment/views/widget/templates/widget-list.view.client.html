@@ -1,17 +1,35 @@
-<div>
-<nav class="navbar navbar-default navbar-fixed-top wd-padding-left-15px">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+        <!--<div class="navbar-header">-->
+
+
+            <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link pull-left wd-navbar-back">-->
+                <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+            <!--</a>-->
+            <!--<a class="navbar-brand">-->
+                <!--Widgets-->
+            <!--</a>-->
+            <!--<p class="navbar-text pull-right">-->
+                <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">-->
+          <!--<span class="glyphicon glyphicon-plus">-->
+          <!--</span>-->
+                <!--</a>-->
+            <!--</p>-->
+        <!--</div>-->
         <div class="navbar-header">
-            <a href="../../page/templates/page-list.html" class="navbar-link pull-left wd-navbar-back">
+            <p class="navbar-text pull-left wd-margin-left-right-15px">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link pull-left">
                 <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="navbar-brand" href="#">
+                </a>
+            </p>
+            <p class="navbar-text pull-left wd-margin-left-right-15px">
+                <a class="wd-navbar-brand">
                 Widgets
-            </a>
+                </a>
+            </p>
             <p class="navbar-text pull-right">
-                <a href="widget-chooser.html" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
         </div>
@@ -19,82 +37,43 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="wd-widget">
+    <div ng-repeat="widget in model.widgets" class="wd-widget">
         <div class="wd-widget-toolbar">
-            <a href="widget-heading.html">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
 
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <h1>GIZMODO</h1>
+        <div ng-include="model.widgetUrl(widget)"></div>
     </div>
-    <div class="wd-widget">
-        <div class="wd-widget-toolbar">
-            <span class="glyphicon glyphicon-cog"></span>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
 
-        <h2>The Biggest Android News Came Nearly a Week Before I/O</h2>
-    </div>
-    <div class="wd-widget">
-        <div class="wd-widget-toolbar">
-            <a href="widget-image.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <img src="https://i.kinja-img.com/gawker-media/image/upload/s--lPkaoYF9--/c_scale,fl_progressive,q_80,w_800/ulucriwd0fntjid9hbwr.jpg">
-
-    </div>
-    <div class="wd-widget">
-        <div class="wd-widget-toolbar">
-            <span class="glyphicon glyphicon-cog"></span>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <p class="wd-text-justify">I/O, Google’s huge developer conference/outdoor coding festival will be wrapping up in Mountain View tomorrow. Thousands of developers have been soaking in the sun and knowledge while Google woos them with free Google Homes, raw vegan salads, and a live performance by LCD Soundsystem. Usually the can’t miss moment of the conference is the Day 1 Keynote, when Google <a href="http://gizmodo.com/everything-new-about-android-from-google-i-o-1795296361#_ga=2.188950319.562596025.1495138486-891363519.1479843118" rel="nofollow">announces big changes to Android</a>, Daydream, and  other software and services. Yet this year, Android’s biggest news was announced four days before the conference. So let’s talk about Project Treble, Google’s plan to get Android updates to users faster. </p>
-    </div>
-    <div class="wd-widget">
-        <div class="wd-widget-toolbar">
-            <a href="widget-youtube.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div class="wd-widget-video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Cimp-eTe3MU" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom wd-no-left-padding">
+<nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left wd-margin-left-right-15px">
-                <a href="../../user/templates/profile.view.client.html">
+                <a href="">
                     <span class="glyphicon glyphicon-play"></span>
-                    </span>
+
                 </a>
             </p>
             <p class="navbar-text pull-left wd-margin-left-right-15px">
-                <a href="../../user/templates/profile.view.client.html">
+                <a href="">
                     <span class="glyphicon glyphicon-eye-open"></span>
-                    </span>
+
                 </a>
             </p>
             <p class="navbar-text pull-right">
-                <a href="../../user/templates/profile.view.client.html">
+                <a href="#!/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
-          </span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-</div>
+

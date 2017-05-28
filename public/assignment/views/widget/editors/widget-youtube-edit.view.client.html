@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+        <input id="name"
+               placeholder="facebook"
+               class="form-control"/>
+
+    <label for="text">Text</label>
+        <textarea id="text"
+                  placeholder="Describe in 200 words"
+                  ng-model = "model.editWidget.text"
+                  rows="5"
+                  class="form-control"></textarea>
+
+    <label for="url">URL</label>
+    <input id="url"
+           ng-model="model.editWidget.url"
+           placeholder="www.northeastern.edu"
+           class="form-control"/>
+
+
+    <label for="width">Width</label>
+        <input id="width"
+               ng-model="model.editWidget.width"
+        placeholder="100px"
+        class="form-control"/>
+
+
+    <a ng-click="model.deleteWidget(model.editWidget._id)" class="btn btn-block btn-danger">Delete</a>
+
+</div>

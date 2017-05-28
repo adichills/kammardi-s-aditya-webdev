@@ -1,11 +1,11 @@
 
-<nav class="navbar navbar-default navbar-fixed-top wd-padding-left-15px">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-left wd-navbar-back">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand">
                 Pages
             </a>
             <p class="navbar-text pull-right">
@@ -39,7 +39,7 @@
         <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-10">
-                    <a href="../widget/templates/widget-list.html">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
                         {{page.name}}
                     </a>
                 </div>
@@ -63,7 +63,7 @@
 </div>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom wd-padding-left-15px">
+<nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">

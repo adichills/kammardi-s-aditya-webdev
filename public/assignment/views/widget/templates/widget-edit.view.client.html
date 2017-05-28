@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link pull-left wd-navbar-back">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Widget Edit
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updateWidget(model.editWidgetId,model.editWidget)"
+                   class="navbar-link">
+          <span class="glyphicon glyphicon-ok ">
+          </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+<div ng-include="model.editWidgetUrl">
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+
+        </div>
+    </div>
+</nav>

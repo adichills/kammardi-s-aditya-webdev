@@ -6,7 +6,7 @@
                 <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand">
                     Edit Page
                 </a>
                 <p class="navbar-text pull-right">
@@ -57,7 +57,7 @@
                 <li ng-repeat="page in model.pages" class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="../widget/templates/widget-list.html">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
                                 {{page.name}}
                             </a>
                         </div>

@@ -29,10 +29,11 @@
             widget._id = (new Date()).getTime() + "";
             widget.pageId = pageId;
             widgets.push(widget);
+            return widget._id;
         }
 
         function deleteWidget(widgetId) {
-            var widget = findWebsiteById(widgetId);
+            var widget = findWidgetById(widgetId);
             var index = widgets.indexOf(widget);
             widgets.splice(index, 1);
         }

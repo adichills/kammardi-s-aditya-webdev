@@ -1,0 +1,35 @@
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+        <input id="name"
+               placeholder="facebook"
+               class="form-control"/>
+
+    <label for="text">Text</label>
+        <textarea id="text"
+                  ng-model="model.editWidget.text"
+                  placeholder="Describe in 200 words"
+                  rows="5"
+                  class="form-control"></textarea>
+
+    <label for="size">Size</label>
+        <select id="size"
+                ng-model="model.editWidget.size"
+                class="form-control">
+            <option value="1">1 (X-Large)</option>
+            <option value="2">2 (Larger)</option>
+            <option value="3">3 (Large)</option>
+            <option value="4">4 (Medium)</option>
+            <option value="5">5 (Small)</option>
+            <option value="6">6 (Smallest)</option>
+        </select>
+
+
+
+    <a ng-click="model.deleteWidget(model.editWidget._id)"
+       class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+
+
