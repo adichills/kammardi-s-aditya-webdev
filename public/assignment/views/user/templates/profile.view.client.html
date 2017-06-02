@@ -18,7 +18,10 @@
 
 <div class="container-fluid">
     <!--<h1>Profile</h1>-->
-
+    <div ng-show="model.message"
+         class="alert alert-info">
+        {{model.message}}
+    </div>
     <form>
         <div class="form-group">
             <label for="username">Username</label>
@@ -33,6 +36,7 @@
             <label for="email">Email address</label>
             <input
                     type="email"
+                    ng-model="model.user.email"
                     class="form-control"
                     id="email"
                     placeholder="alice@wonderland.com">
@@ -61,6 +65,8 @@
        href="#!/user/{{model.userId}}/website">Websites</a>
     <a class="btn btn-danger  btn-block"
        href="#!/login">Logout</a>
+    <a class="btn btn-danger  btn-block"
+       ng-click="model.deleteUser(model.userId)">Un-Register</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom ">

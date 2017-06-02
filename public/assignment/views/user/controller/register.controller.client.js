@@ -42,21 +42,38 @@
                 return;
             }
 
-            var found = userService.findUserByUsername(username);
+            userService.findUserByUsername(username)
+                .then(userAlreadyExists,
+                function () {
+                    var newUser = {
+                        username : username,
+                        password : password
+                    };
+                    userService.createUser(newUser)
+                        .then(function (newUser) {
+                            $location.url('/user/' + newUser._id);
+                        });
 
+                });
+
+        }
+
+        function userAlreadyExists(found) {
             if (found!==null) {
                 //model.message = "Welcome " + username;
                 model.error = "Username already taken .Choose a different username !!";
             }
-            else {
-                var newUser = {
-                    username : username,
-                    password : password
-                };
-                newUser = userService.createUser(newUser);
-                $location.url('/user/' + newUser._id);
+        }
+        function userDoesNotExist(found,username,password){
+            var newUser = {
+                username : username,
+                password : password
+            };
+             userService.createUser(newUser)
+                .then(function (newUser) {
+                    $location.url('/user/' + newUser._id);
+                });
 
-            }
         }
     }
 })()

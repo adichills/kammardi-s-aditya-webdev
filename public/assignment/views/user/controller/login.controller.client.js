@@ -21,15 +21,17 @@
 
 
         function login(username, password) {
-            var found = userService.findUserByCredentials(username,password);
+            userService.findUserByCredentials(username,password)
+                .then(userFound,userNameOrPasswordDoesNotMatch)
 
-            if (found!==null) {
-                //model.message = "Welcome " + username;
-                $location.url('/user/' + found._id);
-            }
-            else {
-                model.message = "Sorry username or password does not match !!! Try again";
-            }
+
+        }
+
+        function userFound(found){
+            $location.url('/user/' + found._id);
+        }
+        function userNameOrPasswordDoesNotMatch(found) {
+            model.message = "Sorry username or password does not match !!! Try again";
         }
     }
 })()
