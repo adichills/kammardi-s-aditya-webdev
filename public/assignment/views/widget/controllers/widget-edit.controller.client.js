@@ -13,11 +13,30 @@
         model.editWidgetId = $routeParams['widgetId'];
 
         function init() {
-            model.widgets = widgetService.findAllWidgetsForPage(model.pageId);
-            model.editWidget = widgetService.findWidgetById(model.editWidgetId);
+            widgetService.findAllWidgetsForPage(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
+            widgetService.findWidgetById(model.editWidgetId)
+                .then(renderWidget);
+
+            // console.log("Heyyy");
+            // console.log(model.editWidget);
+
+
+
+        }
+
+
+
+        function renderWidget(widget) {
+            model.editWidget = widget;
+            // console.log(widget);
+            // console.log(model.editWidget);
             model.editWidgetUrl = widgetUrl(model.editWidget);
 
         }
+
         init();
 
 
@@ -26,19 +45,31 @@
 
 
         function widgetUrl(widget) {
+            console.log("Hey")
+            //console.log(widget);
             var url = 'views/widget/editors/widget-'+widget.widgetType.toLowerCase()+'-edit.view.client.html';
             return url;
         }
 
 
         function updateWidget(widgetId,widget){
-            widgetService.updateWidget(widgetId,widget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget');
+            widgetService.updateWidget(widgetId,widget)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget');
+                },function () {
+                    model.message = "Error while updating the widget";
+                });
+
         }
 
         function deleteWidget(widgetId) {
-            widgetService.deleteWidget(widgetId);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget');
+            widgetService.deleteWidget(widgetId)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget');
+                },function () {
+                    model.message = "Error while deleting the widget";
+                });
+
 
         }
     }

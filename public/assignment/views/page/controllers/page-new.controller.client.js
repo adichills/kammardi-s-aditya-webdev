@@ -22,9 +22,12 @@
         init();
 
         function createPage(page) {
-            page.websiteId = model.websiteId;
-            pageService.createpage(page);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page');
+
+            pageService.createpage(model.websiteId,page)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page');
+                });
+
         }
 
 

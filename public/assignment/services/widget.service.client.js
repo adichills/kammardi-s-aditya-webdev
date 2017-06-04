@@ -6,12 +6,13 @@
         .module('WAM')
         .service('widgetService', widgetService);
 
-    function widgetService() {
+    function widgetService($http) {
         this.findAllWidgetsForPage = findAllWidgetsForPage;
         this.findWidgetById = findWidgetById;
         this.deleteWidget = deleteWidget;
         this.createWidget = createWidget;
         this.updateWidget = updateWidget;
+        this.reOrderWidgets = reOrderWidgets;
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -25,53 +26,44 @@
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ]
 
+        function sendResponseData(response) {
+            return response.data;
+        }
+
         function createWidget(pageId,widget) {
-            widget._id = (new Date()).getTime() + "";
-            widget.pageId = pageId;
-            widgets.push(widget);
-            return widget._id;
+            var url = '/api/assignment/page/'+pageId+'/widget';
+            return $http.post(url,widget)
+                .then(sendResponseData);
         }
 
         function deleteWidget(widgetId) {
-            var widget = findWidgetById(widgetId);
-            var index = widgets.indexOf(widget);
-            widgets.splice(index, 1);
+            var url = '/api/assignment/widget/'+widgetId;
+            return $http.delete(url)
+                .then(sendResponseData);
+
         }
 
         function findWidgetById(widgetId) {
-            return widgets.find(function (widget) {
-                return widget._id === widgetId;
-            });
+            var url = '/api/assignment/widget/'+widgetId;
+            return $http.get(url)
+                .then(sendResponseData);
         }
         function updateWidget(widgetId,widget) {
-            for(var i in widgets){
-                if(widgets[i]._id === widgetId){
-                    widgets[i].widgetType = widget.widgetType;
-                    if(widget.size!== null || typeof widget.size !== 'undefined'){
-                        widgets[i].size = widget.size;
-                    }
-                    if(widget.width!== null || typeof widget.width !== 'undefined'){
-                        widgets[i].width = widget.width;
-                    }
-                    if(widget.text!== null || typeof widget.text !== 'undefined'){
-                        widgets[i].text = widget.text;
-                    }
-
-
-                }
-            }
+            var url = '/api/assignment/widget/'+widgetId;
+            return $http.put(url,widget)
+                .then(sendResponseData);
         }
 
         function findAllWidgetsForPage(pageId) {
-            var results = [];
+            var url = '/api/assignment/page/'+pageId +'/widget';
+            return $http.get(url)
+                .then(sendResponseData);
+        }
+        function reOrderWidgets(pageId,sIndex,eIndex) {
+            var url = '/api/assignment/page/'+pageId+'/widget?initial='+sIndex+'&final='+eIndex;
+            return $http.put(url)
+                .then(sendResponseData);
 
-            for(var v in widgets) {
-                if(widgets[v].pageId === pageId) {
-                    results.push(widgets[v]);
-                }
-            }
-
-            return results;
         }
 
     }

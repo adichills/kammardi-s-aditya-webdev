@@ -12,10 +12,14 @@
         model.pageId = $routeParams['pageId'];
 
         function init() {
-            model.widgets = widgetService.findAllWidgetsForPage(model.pageId);
+            widgetService.findAllWidgetsForPage(model.pageId)
+                .then(renderWidgets);
         }
         init();
 
+        function renderWidgets(widgets) {
+            model.widgets = widgets;
+        }
 
         model.createWidget = createWidget;
 
@@ -23,8 +27,14 @@
             var widget = {
                 widgetType:widgetType
             }
-            var widgetId = widgetService.createWidget(model.pageId,widget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget/'+widgetId);
+            widgetService.createWidget(model.pageId,widget)
+                .then(function (widget) {
+                    //console.log(widget);
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget/'+widget._id);
+                },function () {
+                    model.message = "Error while creating a new widget";
+                });
+
 
         }
 

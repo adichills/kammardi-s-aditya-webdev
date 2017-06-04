@@ -17,18 +17,38 @@
         model.updatePage = updatePage;
 
         function init() {
-            model.pages = pageService.findPageByWebsiteId(model.websiteId);
-            model.editPage = pageService.findpageById(model.editPageId);
+            pageService.findPageByWebsiteId(model.websiteId)
+                .then(renderPages);
+            pageService.findpageById(model.editPageId)
+                .then(renderPage);
         }
         init();
 
         function deletePage(pageId) {
-            pageService.deletepage(pageId);
-            $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+
+            pageService.deletepage(pageId)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+                },function () {
+                    model.message = "Error while deleting the page";
+                });
+
         }
         function updatePage(pageId,page){
-            pageService.updatepage(pageId,page);
-            $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+            pageService.updatepage(pageId,page)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+                },function () {
+                    model.message = "Error while updating the page";
+                });
+
+        }
+
+        function renderPages(pages) {
+            model.pages = pages;
+        }
+        function renderPage(page) {
+            model.editPage = page;
         }
 
 

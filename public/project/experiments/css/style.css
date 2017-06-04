@@ -1,0 +1,47 @@
+.poc-left-right-margin{
+    margin-left: 5px;
+    margin-right: 5px;
+    border:1px solid #dddddd;
+
+}
+.thumbnail{
+    border:transparent;
+}
+
+.poc-toolbar{
+    position: absolute;
+    right: 10px;
+    background: black;
+    opacity: 0.5;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+    z-index: 1;
+}
+
+.thumbnail > .caption{
+
+    padding-top:0px;
+}
+.poc-height-200px{
+    height: 200px;
+}
+.articleImage{
+    width: 300px;
+    height:300px;
+
+}
+
+.backgroundImage{
+    background-image: url("");
+}
+div[back-img]{
+    width:100%;
+
+}
+
+.articleText
+{
+    background: rgba(217, 237, 247, 0.47);
+    padding: 20px;
+}
+

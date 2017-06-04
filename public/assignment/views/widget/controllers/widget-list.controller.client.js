@@ -12,9 +12,14 @@
         model.pageId = $routeParams['pageId'];
 
         function init() {
-            model.widgets = widgetService.findAllWidgetsForPage(model.pageId);
+            widgetService.findAllWidgetsForPage(model.pageId)
+                .then(renderWidgets);
         }
         init();
+
+        function renderWidgets(widgets) {
+            model.widgets = widgets;
+        }
 
 
         model.trust = trust;

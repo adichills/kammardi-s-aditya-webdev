@@ -1,0 +1,58 @@
+<div ng-include="'header.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="row">
+
+            <div class="col-sm-12" ng-repeat="article in model.articles">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <div class="thumbnail">
+                            <!--<img ng-src="{{article.urlToImage}}" alt="">-->
+                            <div ng-style="{'background-image':'url({{article.urlToImage}})'}" class="caption">
+                                <div class="articleText">
+                                    <h3>{{article.title}}</h3>
+                                    <p>{{article.description}}</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--<div class="thumbnail col-sm-12" style="width: auto" ng-repeat="article in model.articles">-->
+            <!--&lt;!&ndash;<img ng-src="{{article.urlToImage}}" alt="" class="articleImage">&ndash;&gt;-->
+            <!--<div class="caption poc-left-right-margin">-->
+                <!--<img ng-src="{{article.urlToImage}}" alt="" class="articleImage">-->
+                <!--<div class="poc-toolbar">-->
+                    <!--<a href="">-->
+
+                        <!--<span class="glyphicon glyphicon-plus"></span>-->
+                    <!--</a>-->
+
+                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+                <!--</div>-->
+
+
+                <!--<h3>{{article.title}}</h3>-->
+                <!--<p>-->
+                    <!--{{article.description}}-->
+                <!--</p>-->
+                <!--&lt;!&ndash;<p>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="#" class="btn btn-primary" role="button">Button</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="#" class="btn btn-default" role="button">Button</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</p>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+    </div>
+</div>

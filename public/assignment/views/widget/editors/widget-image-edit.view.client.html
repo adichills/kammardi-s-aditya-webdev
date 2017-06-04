@@ -25,10 +25,23 @@
         placeholder="100%"
         class="form-control"/>
 
-    <label for="file">Upload</label>
-    <input id="file" multiple type="file" class="form-control"/>
+    <label for="myfile">Upload</label>
+    <form action="/api/assignment/upload"   method="post" enctype="multipart/form-data">
 
-    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="btn btn-block btn-info">Upload</a>
+        <input id="myfile"  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.editWidget.width}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.editWidgetId}}"   style="display: none"/>
+        <button type="submit"    class="btn btn-block btn-info">Upload Image</button>
+    </form>
+
+
+    <!--<label for="file">Upload</label>-->
+    <!--<input id="file" multiple type="file" class="form-control"/>-->
+
+    <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="btn btn-block btn-info">Upload</a>-->
 
     <a ng-click="model.deleteWidget(model.editWidget._id)"
        class="btn btn-block btn-danger">Delete</a>
