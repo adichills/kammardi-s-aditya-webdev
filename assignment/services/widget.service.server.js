@@ -25,6 +25,25 @@ app.put('/api/assignment/widget/:widgetId',updateWidget);
 app.get('/api/assignment/widget/:widgetId',findWidgetById);
 app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
 app.put("/api/assignment/page/:pageId/widget",reOrderWidgets);
+app.put('/api/assignment/flickr/:pageId/:widgetId',updateWidgetForFlickr);
+
+function updateWidgetForFlickr(req,res) {
+    var pageId = req.params['pageId'];
+    var widgetId = req.params['widgetId'];
+    var urlObject = req.body;
+    var url = urlObject.url;
+
+    for(var v in widgets){
+        if(widgets[v]._id === widgetId){
+            widgets[v].pageId = pageId;
+            widgets[v].url = url;
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
+    return;
+}
 
 function reOrderWidgets(req,res) {
     var pageId = req.params['pageId'];
@@ -37,13 +56,28 @@ function reOrderWidgets(req,res) {
         if(widgets[v].pageId === pageId) {
 
             results.push(widgets[v]);
+
         }
     }
+
+    for (var v in results){
+        var index = widgets.indexOf(results[v]);
+        widgets.splice(index,1);
+    }
     results.splice(eIndex,0,results.splice(sIndex,1)[0]);
-    //console.log(results);
-    // for (var v in results){
-    //     widgets.push(results[v]);
-    // }
+
+
+    console.log("Start Index - " + sIndex);
+    console.log('End Index - ' + eIndex);
+    console.log(results.length);
+    console.log(results)
+    for (var v in results){
+
+            widgets.push(results[v]);
+
+
+    }
+    //console.log(widgets.length);
     //console.log(widgets);
     res.sendStatus(200);
 

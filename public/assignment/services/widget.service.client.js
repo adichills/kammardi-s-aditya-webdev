@@ -13,6 +13,7 @@
         this.createWidget = createWidget;
         this.updateWidget = updateWidget;
         this.reOrderWidgets = reOrderWidgets;
+        this.updateWidgetForFlickr = updateWidgetForFlickr;
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -64,6 +65,12 @@
             return $http.put(url)
                 .then(sendResponseData);
 
+        }
+
+        function updateWidgetForFlickr(pageId,widgetId,urlObject) {
+            var url = '/api/assignment/flickr/'+pageId+'/'+widgetId;
+            return $http.put(url,urlObject)
+                .then(sendResponseData);
         }
 
     }
