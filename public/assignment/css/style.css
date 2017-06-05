@@ -109,6 +109,9 @@ nav.navbar.navbar-default.navbar-fixed-bottom{
 .wd-no-left-padding{
     padding-left: 0px;!important;
 }
+.wd-no-right-padding{
+    padding-right:0px;!important;
+}
 
 .wd-text-justify{
     text-align: justify;
@@ -121,4 +124,7 @@ nav.navbar.navbar-default.navbar-fixed-bottom{
     height: 50px;
     font-size: 18px;
     line-height: 20px;
+}
+.wd-responsive-image{
+    width:100%;
 }

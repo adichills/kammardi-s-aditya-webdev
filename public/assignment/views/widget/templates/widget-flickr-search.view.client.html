@@ -1,3 +1,21 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <p class="navbar-text pull-left wd-margin-left-right-15px">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}" class="navbar-link pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <p class="navbar-text pull-left wd-margin-left-right-15px">
+                <a class="wd-navbar-brand">
+                    Search Flickr
+                </a>
+            </p>
+
+        </div>
+    </div>
+</nav>
 <div class="container-fluid">
 <div class="input-group">
     <input ng-model="searchText" type="text" class="form-control">
@@ -7,10 +25,22 @@
         </a>
     </span>
 </div>
-<div class="row">
-    <div class="col-xs-4" ng-repeat="photo in model.photos.photo">
-        <img ng-click="model.selectPhoto(photo)"
-             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+<div class="row wd-padding-left-15px wd-padding-right-15px">
+    <div class="col-xs-4 wd-no-left-padding wd-no-right-padding" ng-repeat="photo in model.photos.photo">
+        <img width="100%" ng-click="model.selectPhoto(photo)"
+             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg"/>
     </div>
 </div>
 </div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+
+        </div>
+    </div>
+</nav>
