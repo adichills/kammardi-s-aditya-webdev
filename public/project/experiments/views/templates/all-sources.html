@@ -3,27 +3,45 @@
 </div>
 <div>
     <div class="container-fluid">
+        <div ng-show="model.message" class="alert alert-info">
+            <p>
+                {{model.message}}
+            </p>
+        </div>
+        <div class="input-group">
+            <input ng-model="searchText" type="text" class="form-control">
+            <span class="input-group-btn">
+                <a ng-click="model.searchForSources(searchText)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+                 </a>
+            </span>
+        </div>
+
         <div class="row">
 
-            <div class="thumbnail col-sm-6 col-md-4" ng-repeat="source in model.sources">
+            <div class="thumbnail col-sm-6 col-md-4" ng-repeat="source in model.searchResults">
                 <!--<img src="..." alt="...">-->
                 <div class="caption poc-left-right-margin poc-height-200px">
                     <div class="poc-toolbar">
-                        <a href="">
-
+                        <a ng-click = "model.addSourceToDashboard(source.id)">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
+                        <a href="#!/articles/{{source.id}}/{{source.sortBysAvailable[0]}}">
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                        </a>
+                        <a href = "{{source.url}}" target="_blank">
+                            <span class = "glyphicon glyphicon-globe"></span>
+                        </a>
 
-                        <span class="glyphicon glyphicon-align-justify"></span>
                     </div>
                     <h3>{{source.name}}</h3>
                     <p>
                         {{source.description}}
                     </p>
-                    <!--<p>-->
-                    <!--<a href="#" class="btn btn-primary" role="button">Button</a>-->
+                    <p>
+                    <!--<a href="{{source.url}}" target="_blank" class="btn btn-primary" role="button">Go to Website</a>-->
                     <!--<a href="#" class="btn btn-default" role="button">Button</a>-->
-                    <!--</p>-->
+                    </p>
                 </div>
             </div>
 
