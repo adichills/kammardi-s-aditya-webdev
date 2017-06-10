@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('wbdvDirectives',['ngRoute','textAngular'])
+        .module('wbdvDirectives',['ngRoute'])
         .directive('wbdvSortable',wbdvSortable);
 
     function wbdvSortable() {
@@ -22,7 +22,8 @@
 
                   //console.log(ui.item.index())
                 },
-                axis:'y'
+                axis:'y',
+                cursor:"move"
             });
         }
 
