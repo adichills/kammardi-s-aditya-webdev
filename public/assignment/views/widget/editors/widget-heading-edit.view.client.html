@@ -3,6 +3,7 @@
     <label for="name">Name</label>
         <input id="name"
                placeholder="facebook"
+               ng-model="model.editWidget.name"
                class="form-control"/>
 
     <label for="text">Text</label>
@@ -11,17 +12,16 @@
                   placeholder="Describe in 200 words"
                   rows="5"
                   class="form-control"></textarea>
-
     <label for="size">Size</label>
         <select id="size"
                 ng-model="model.editWidget.size"
                 class="form-control">
-            <option value="1">1 (X-Large)</option>
-            <option value="2">2 (Larger)</option>
-            <option value="3">3 (Large)</option>
-            <option value="4">4 (Medium)</option>
-            <option value="5">5 (Small)</option>
-            <option value="6">6 (Smallest)</option>
+            <option ng-value="1">1 (X-Large)</option>
+            <option ng-value="2">2 (Larger)</option>
+            <option ng-value="3">3 (Large)</option>
+            <option ng-value="4">4 (Medium)</option>
+            <option ng-value="5">5 (Small)</option>
+            <option ng-value="6">6 (Smallest)</option>
         </select>
 
 

@@ -29,7 +29,7 @@
             }
             widgetService.createWidget(model.pageId,widget)
                 .then(function (widget) {
-                    //console.log(widget);
+                    console.log(widget);
                     $location.url('/user/'+model.userId+'/website/'+model.websiteId + '/page/' + model.pageId + '/widget/'+widget._id);
                 },function () {
                     model.message = "Error while creating a new widget";

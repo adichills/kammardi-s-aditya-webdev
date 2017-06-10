@@ -1,4 +1,5 @@
 var app = require('../../express');
+var pageModel = require('../model/page/page.model.server');
 
 var pages = [
     { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -18,15 +19,10 @@ app.post('/api/assignment/website/:websiteId/page',createPage);
 function findAllPagesForWebsite(req,res) {
     var results = [];
     var websiteId = req.params['websiteId'];
-    for(var v in pages) {
-        if(pages[v].websiteId === websiteId) {
-            pages[v].created = new Date();
-            pages[v].accessed = new Date();
-            results.push(pages[v]);
-        }
-    }
-    res.json(results);
-    return;
+    pageModel.findAllPagesForWebsite(websiteId)
+        .then(function (pages) {
+            res.json(pages);
+        });
 }
 
 function updatePage(req,res) {
@@ -34,63 +30,51 @@ function updatePage(req,res) {
     var pageId = req.params['pageId'];
     var page = req.body;
 
-    for(var i in pages){
-        if(pages[i]._id === pageId){
-            pages[i].name = page.name;
-            pages[i].description = page.description;
+    pageModel.updatePage(pageId,page)
+        .then(function (status) {
             res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
-    return;
+        },function (err) {
+            res.sendStatus(404);
+        });
+
 
 }
 
 function deletePage(req,res) {
     var pageId = req.params['pageId'];
-
-    var page = findPageByIdInternal(pageId);
-    if(page!==null && typeof  page !== 'undefined'){
-        var index = pages.indexOf(page);
-        pages.splice(index, 1);
-        res.sendStatus(200);
-        return;
-    }
-    else{
-        res.sendStatus(404);
-        return;
-    }
+    pageModel.deletePage(pageId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (erre) {
+            res.sendStatus(404);
+        })
 
 }
 
-function findPageByIdInternal(pageId) {
-    return pages.find(function (page) {
-        return page._id === pageId;
-    });
-}
+
 
 function findpageById(req,res) {
 
     var pageId = req.params['pageId'];
-    var page = findPageByIdInternal(pageId);
-    if(page!==null && typeof page !=='undefined'){
-        res.json(page);
-        return;
-    }
-    else{
-        res.sendStatus(404);
-        return;
-    }
+
+    pageModel.findPageById(pageId)
+        .then(function (page) {
+            if(page){
+                res.json(page);
+            }
+            else{
+                res.sendStatus(404);
+            }
+        });
 
 }
 
 function createPage(req,res) {
     var page = req.body;
     var websiteId = req.params['websiteId'];
-    page.websiteId = websiteId;
-    page._id = (new Date()).getTime() + "";
-    pages.push(page);
 
-    res.sendStatus(200);
+    pageModel.createPage(websiteId,page)
+        .then(function (page) {
+            res.sendStatus(200);
+        });
 }

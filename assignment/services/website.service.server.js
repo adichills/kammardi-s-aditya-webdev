@@ -1,4 +1,5 @@
 var app = require('../../express');
+var websiteModel = require('../model/website/website.model.server');
 
 var websites = [
     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -19,77 +20,60 @@ app.post('/api/assingment/:userId/website',createWebsite);
 function createWebsite(req,res) {
     var website = req.body;
     var developerId = req.params['userId'];
-    website.developerId = developerId;
-    website._id = (new Date()).getTime() + "";
-    websites.push(website);
-    res.sendStatus(200);
+    
+    websiteModel.createWebsiteForUser(developerId,website)
+        .then(function (website) {
+            res.json(website);
+        });
 }
 
 
 function updateWebsite(req,res) {
     var websiteId = req.params['websiteId'];
     var website = req.body;
+    
+    websiteModel.updateWebsite(websiteId,website)
+        .then(function (status) {
+            res.send(status);
+        },function (err) {
+            res.send(404);
+        })
 
-    for(var i in websites){
-        if(websites[i]._id === websiteId){
-            websites[i].name = website.name;
-            websites[i].description = website.description;
-            res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
 }
 
 function deleteWebsite(req,res) {
     var websiteId = req.params['websiteId'];
 
-    var website = findWebsiteByIdInternal(websiteId);
+    websiteModel.deleteWebsite(websiteId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },then(function (err) {
+            res.sendStatus(404);
+        }));
 
-    if(website!==null && typeof  website !== 'undefined'){
-        var index = websites.indexOf(website);
-        websites.splice(index, 1);
-        res.sendStatus(200);
-        return;
-    }
-    else{
-        res.sendStatus(404);
-        return;
-    }
+
 
 }
 function findWebsiteById(req,res) {
     var websiteId = req.params['websiteId'];
-    var website = findWebsiteByIdInternal(websiteId);
-    if(website!==null || typeof website !=='undefined'){
-        res.json(website);
-        return;
-    }
-    else{
-        res.sendStatus(404);
-        return;
-    }
+    websiteModel.findWebsiteById(websiteId)
+        .then(function (website) {
+            if(website){
+                res.json(website);
+            }
+            else{
+                res.sendStatus(404);
+            }
+        });
 }
 
 
-function findWebsiteByIdInternal(websiteId) {
-    return websites.find(function (website) {
-        return website._id === websiteId;
-    });
-}
 
 function findAllWebsitesForUser(req,res) {
 
     var userId = req.params['userId'];
-    var results = [];
-
-    for(var v in websites) {
-        if(websites[v].developerId === userId) {
-            websites[v].created = new Date();
-            websites[v].accessed = new Date();
-            results.push(websites[v]);
-        }
-    }
-    res.json(results);
-    return;
+    websiteModel.findAllWebsitesForUser(userId)
+        .then(function (websites) {
+            res.json(websites);
+        });
 }

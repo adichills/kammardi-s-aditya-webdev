@@ -62,7 +62,7 @@
                             </a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
-                            {{page.created | date:'shortDate'}}
+                            {{page.dateCreated | date:'shortDate'}}
                         </div>
                         <div class = "col-md-3 hidden-sm hidden-xs" >
                             {{page.accessed | date:'shortDate'}}
@@ -87,7 +87,7 @@
                    class="form-control"/>
             <label for="title">Title</label>
             <input id ="title"
-                   ng-model = "model.newPage.description"
+                   ng-model = "model.newPage.title"
                    placeholder="What is the secret of success ??"
                    class="form-control">
 

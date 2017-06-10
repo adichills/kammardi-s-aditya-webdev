@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('wbdvDirectives',['ngRoute'])
+        .module('wbdvDirectives',['ngRoute','textAngular'])
         .directive('wbdvSortable',wbdvSortable);
 
     function wbdvSortable() {

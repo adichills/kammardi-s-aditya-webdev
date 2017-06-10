@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <label for="name">Name</label>
+    <input id="name"
+           placeholder="html"
+           ng-model="model.editWidget.name"
+           class="form-control"/>
+    <label for="htmlEditor">HTML</label>
+    <div class="form-group">
+        <div ng-model="model.editWidget.text"
+             id="htmlEditor"
+             text-angular
+             ta-toolbar
+                     ="[['h1','h2','h3'],
+        ['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+        </div>
+
+    </div>
+
+    <a ng-click="model.deleteWidget(model.editWidget._id)"
+       class="btn btn-block btn-danger">Delete</a>
+
+</div>

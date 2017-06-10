@@ -62,7 +62,7 @@
                             </a>
                         </div>
                         <div class ="col-lg-3 visible-lg">
-                            {{page.created | date:'shortDate'}}
+                            {{page.dateCreated | date:'shortDate'}}
                         </div>
                         <div class = "col-md-3 hidden-sm hidden-xs" >
                             {{page.accessed | date:'shortDate'}}
@@ -89,7 +89,7 @@
             <input id ="title"
                    placeholder="What is the secret of success ??"
                    value="Page Title"
-                   ng-model="model.editPage.description"
+                   ng-model="model.editPage.title"
                    class="form-control">
 
             <a ng-click="model.deletePage(model.editPageId)" class="btn btn-block btn-danger">Delete</a>
