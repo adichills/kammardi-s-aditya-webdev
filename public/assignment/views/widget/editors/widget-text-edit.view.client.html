@@ -12,7 +12,7 @@
            class="form-control"/>
     <label for="text">Rows</label>
     <input id="row"
-           placeholder="Lorem ipsum"
+           placeholder="1"
            ng-model="model.editWidget.rows"
            class="form-control"/>
 
@@ -21,4 +21,6 @@
     <label for = "formatted">Formatted</label>
     <input id ="formatted"ng-model="model.editWidget.formatted" type="checkbox" class="form-check"/>
 
+    <a ng-click="model.deleteWidget(model.editWidget._id)"
+       class="btn btn-block btn-danger">Delete</a>
 </div>
