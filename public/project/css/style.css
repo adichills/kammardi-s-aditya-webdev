@@ -1,0 +1,12 @@
+body{
+    padding-top: 60px;
+    padding-bottom: 60px;
+    /*background-image: url("../../images/newspaper-154444_1280.png");*/
+}
+.nh-strechWidth{
+    width: 100%;
+}
+.navbar-default > div {
+    background-color: #222222;
+    border-color: #080808;
+}

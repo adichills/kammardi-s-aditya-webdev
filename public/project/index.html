@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="NH">
 <head>
     <meta charset="UTF-8">
     <title>Project Home Page</title>
+
+    <!--css-->
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../vendor/fontAwesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery-ui.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>-->
+
+    <script src ="../vendor/angular/angular.min.js"></script>
+    <script src = "../vendor/angular/angular-route.min.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/user/user-config.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 </head>
 <body>
-    <h1>Project Home Page</h1>
+    <div class="container-fluid">
+        <div ng-include="'views/common/templates/header.view.client.html'"></div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 hidden-xs hidden-sm">
+                    <div>
+                        <p>
+                            Div left
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="ng-view">
+
+                    </div>
+                </div>
+                <div class="col-md-2 hidden-xs hidden-sm">
+
+                </div>
+            </div>
+        </div>
+
+        <div ng-include="'views/common/templates/footer.view.client.html'"></div>
+    </div>
+
+
+<div>
+
+</div>
+
 </body>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
 </html>
