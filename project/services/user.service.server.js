@@ -3,6 +3,35 @@ var nh_userModel = require('../model/user/user.model.server');
 
 
 
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+var bcrypt = require("bcrypt-nodejs");
+
+
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ['id', 'displayName', 'photos', 'email','first_name','last_name']
+
+};
+
+
+
+passport.use(new LocalStrategy(localStrategy));
+passport.use(new FacebookStrategy(facebookConfig,facebookStrategy));
+
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+
+
+
+
+
+
+
 app.get('/api/nh/user',findAllUsers);
 app.get('/api/nh/user/:userId',findUserById);
 app.post('/api/nh/user',createUser);

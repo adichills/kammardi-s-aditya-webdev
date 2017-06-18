@@ -11,7 +11,11 @@ var nh_userSchema = mongoose.Schema({
     email: String,
     phone:String,
     // dashboard: {type: mongoose.Schema.Types.ObjectId, ref: "NH_DashboardModel"},
-    dateCreated: {type: Date, default: Date.now}
+    dateCreated: {type: Date, default: Date.now},
+    facebook: {
+        id:    String,
+        token: String
+    }
 }, {collection: "NH_User"});
 
 module.exports = nh_userSchema;

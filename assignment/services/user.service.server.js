@@ -51,42 +51,6 @@ app.get('/auth/facebook/assignment/callback',
         failureRedirect: '/assignment/index.html#!/login'
     }));
 
-// function facebookStrategy(token, refreshToken, profile, done) {
-//     userModel
-//         .findUserByFacebookId(profile.id)
-//         .then(
-//             function(user) {
-//                 if(user) {
-//                     return done(null, user);
-//                 } else {
-//                     var email = profile.emails[0];
-//                     //var emailParts = email.split("@");
-//                     var newFacebookUser = {
-//                         username:  email.value,
-//                         firstName: profile.name.givenName,
-//                         lastName:  profile.name.familyName,
-//                         email:     email.value,
-//                         facebook: {
-//                             id:    profile.id,
-//                             token: token
-//                         }
-//                     };
-//                     return userModel.createUser(newFacebookUser);
-//                 }
-//             },
-//             function(err) {
-//                 if (err) { return done(err); }
-//             }
-//         )
-//         .then(
-//             function(user){
-//                 return done(null, user);
-//             },
-//             function(err){
-//                 if (err) { return done(err); }
-//             }
-//         );
-// }
 
 function facebookStrategy(token, refreshToken, profile, done) {
     userModel
