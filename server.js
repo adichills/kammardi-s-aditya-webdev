@@ -1,4 +1,15 @@
 var app = require('./express');
+var passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+
+
+app.use(cookieParser());
+app.use(session({ secret: "put some text here"}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 var bodyParser = require('body-parser');

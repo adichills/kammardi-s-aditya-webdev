@@ -21,12 +21,55 @@
                 controllerAs:'model'
 
             })
-            .when('/user/:userId',{
+            .when('/profile',{
                 templateUrl:'views/user/templates/profile.view.client.html',
                 controller:'profileController',
-                controllerAs:'model'
+                controllerAs:'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+
 
             })
+
+
+
     }
+
+    function checkCurrentUser($q, $location, userService) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkLoggedIn(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+
+
+
 
 })()

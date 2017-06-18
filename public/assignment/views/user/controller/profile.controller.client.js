@@ -6,13 +6,14 @@
         .module('WAM')
         .controller('profileController', profileController);
 
-    function profileController($location,$routeParams,userService) {
+    function profileController(currentUser,$location,$routeParams,userService) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
         //model.user = userService.findUserByUserId(model.userId);
         userService
@@ -41,12 +42,20 @@
 
         function deleteUser(userId) {
             userService.deleteUser(userId)
-                .then(function () {
-                    $location.url('/');
-                },
+                .then(logout(),
                 function () {
                     model.message = "Error while un registering";
                 })
+        }
+
+
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
         }
 
     }

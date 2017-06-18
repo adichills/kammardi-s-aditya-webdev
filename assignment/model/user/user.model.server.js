@@ -11,12 +11,18 @@ userModel.findUserById = findUserById;
 userModel.findAllUsers = findAllUsers;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
 
 module.exports = userModel;
+
+function findUserByFacebookId(facebookId) {
+    return userModel.findOne({'facebook.id': facebookId});
+}
+
 
 function deleteWebsite(userId, websiteId) {
     return userModel

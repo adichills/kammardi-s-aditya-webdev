@@ -21,14 +21,14 @@
 
 
         function login(username, password) {
-            userService.findUserByCredentials(username,password)
+            userService.login(username,password)
                 .then(userFound,userNameOrPasswordDoesNotMatch)
 
 
         }
 
         function userFound(found){
-            $location.url('/user/' + found._id);
+            $location.url('/profile');
         }
         function userNameOrPasswordDoesNotMatch(found) {
             model.message = "Sorry username or password does not match !!! Try again";
