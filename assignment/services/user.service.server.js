@@ -44,8 +44,8 @@ app.post('/api/assignment/unregister',unregister);
 app.get ('/auth/assignment/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/auth/facebook/assignment/callback',
     passport.authenticate('facebook', {
-        successRedirect: '#!/profile',
-        failureRedirect: '#!/login'
+        successRedirect: '/assignment/index.html#!/profile',
+        failureRedirect: '/assignment/index.html#!/login'
     }));
 
 // function facebookStrategy(token, refreshToken, profile, done) {
