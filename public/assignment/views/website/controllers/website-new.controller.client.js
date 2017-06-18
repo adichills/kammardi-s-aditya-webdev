@@ -6,11 +6,11 @@
         .module('WAM')
         .controller('websiteNewController', websiteNewController);
 
-    function websiteNewController($routeParams,$location,
+    function websiteNewController(currentUser,$routeParams,$location,
                                    websiteService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.editWebsiteId = $routeParams['websiteId'];
         model.createWebsite = createWebsite;
 
@@ -28,9 +28,15 @@
 
         function createWebsite(website) {
             //website.developerId = model.userId;
+
+            if(typeof website === 'undefined' || website.name === null || typeof website.name === 'undefined'){
+                model.error = "Website name cannot be empty";
+                return;
+            }
+
             websiteService.createWebsite(model.userId,website)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/website');
                 },function () {
                     model.message = "Error while creating new website";
                 });

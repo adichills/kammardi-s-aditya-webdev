@@ -5,9 +5,9 @@
     angular.module('WAM')
         .controller('widgetListController',widgetListController);
 
-    function widgetListController($routeParams,$location,widgetService,$sce) {
+    function widgetListController(currentUser,$routeParams,$location,widgetService,$sce) {
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
 

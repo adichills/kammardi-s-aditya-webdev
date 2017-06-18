@@ -6,6 +6,9 @@ var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
+var bcrypt = require("bcrypt-nodejs");
+
+
 var facebookConfig = {
     clientID     : process.env.FACEBOOK_CLIENT_ID,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
@@ -122,9 +125,9 @@ function facebookStrategy(token, refreshToken, profile, done) {
 
 function localStrategy(username, password, done) {
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(function (user) {
-            if (user) {
+            if (user && bcrypt.compareSync(password, user.password)) {
                 done(null, user);
             } else {
                 done(null, false);
@@ -170,6 +173,7 @@ function createUser(req,res) {
 
 function register(req, res) {
     var userObj = req.body;
+    userObj.password = bcrypt.hashSync(userObj.password);
     userModel
         .createUser(userObj)
         .then(function (user) {

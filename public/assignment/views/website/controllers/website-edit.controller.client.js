@@ -6,11 +6,11 @@
         .module('WAM')
         .controller('websiteEditController', websiteEditController);
 
-    function websiteEditController($routeParams,$location,
+    function websiteEditController(currentUser,$routeParams,$location,
                                    websiteService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.editWebsiteId = $routeParams['websiteId'];
         model.deleteWebsite = deleteWebsite;
         model.updateWebsite = updateWebsite;
@@ -33,16 +33,22 @@
         function deleteWebsite(websiteId) {
             websiteService.deleteWebsite(websiteId)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/website');
                 },function () {
                     model.message = "Error while deleting the website";
                 });
 
         }
         function updateWebsite(websiteId,website){
+
+            if(typeof website === 'undefined' || website.name === null ||website.name ==="" || typeof website.name === 'undefined'){
+                model.error = "Website name cannot be empty";
+                return;
+            }
+
             websiteService.updateWebsite(websiteId,website)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/website');
                 },function () {
                     model.message = "Error while updating the website";
                 });

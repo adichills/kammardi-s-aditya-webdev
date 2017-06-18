@@ -3,10 +3,16 @@
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
+
     <input type="text"
+           name="username"
            ng-model="username"
            class="form-control"
+           required
            placeholder="username"/>
+    <!--<div ng-show = "username.$submitted && username.$invalid" class="alert alert-danger">-->
+        <!--Username required-->
+    <!--</div>-->
     <input type="password"
            ng-model="password"
            class="form-control"

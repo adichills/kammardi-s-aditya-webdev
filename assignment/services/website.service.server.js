@@ -47,7 +47,7 @@ function deleteWebsite(req,res) {
     websiteModel.deleteWebsite(websiteId)
         .then(function (status) {
             res.sendStatus(200);
-        },then(function (err) {
+        },(function (err) {
             res.sendStatus(404);
         }));
 

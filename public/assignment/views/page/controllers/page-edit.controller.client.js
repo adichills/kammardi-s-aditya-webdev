@@ -6,11 +6,11 @@
         .module('WAM')
         .controller('pageEditController', pageEditController);
 
-    function pageEditController($routeParams,$location,
+    function pageEditController(currentUser,$routeParams,$location,
                                    pageService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.editPageId = $routeParams['pageId'];
         model.deletePage = deletePage;
@@ -28,16 +28,22 @@
 
             pageService.deletepage(pageId)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+                    $location.url('/website/' + model.websiteId + '/page');
                 },function () {
                     model.message = "Error while deleting the page";
                 });
 
         }
         function updatePage(pageId,page){
+
+            if(typeof page === 'undefined' ||page.name===""|| page.name === null || typeof page.name === 'undefined'){
+                model.error = "Page name cannot be empty";
+                return;
+            }
+
             pageService.updatepage(pageId,page)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+                    $location.url('/website/' + model.websiteId + '/page');
                 },function () {
                     model.message = "Error while updating the page";
                 });

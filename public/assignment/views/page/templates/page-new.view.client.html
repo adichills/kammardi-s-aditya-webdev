@@ -3,14 +3,14 @@
         <div class="row">
 
             <div class="col-sm-4 hidden-xs">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left">
+                <a href="#!/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand">
                     New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
+                    <a href="#!/website/{{model.websiteId}}/page/new" class="navbar-link">
                         <span class="glyphicon glyphicon-plus ">
                         </span>
                     </a>
@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-sm-8 col-xs-12">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left visible-xs">
+                <a href="#!/website/{{model.websiteId}}/page" class="navbar-link wd-navbar-back pull-left visible-xs">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <p class="navbar-text pull-left">New Page</p>
@@ -57,7 +57,7 @@
                 <li ng-repeat="page in model.pages" class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-7 col-sm-10 col-xs-10">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                            <a href="#!/website/{{model.websiteId}}/page/{{page._id}}/widget">
                                 {{page.name}}
                             </a>
                         </div>
@@ -68,7 +68,7 @@
                             {{page.accessed | date:'shortDate'}}
                         </div>
                         <div class="col-xs-1">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                            <a href="#!/website/{{model.websiteId}}/page/{{page._id}}">
                                 <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -80,6 +80,11 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
+
+            <div ng-show="model.error" class="alert alert-info">
+                {{model.error}}
+            </div>
+
             <label for="name">Name</label>
             <input id="name"
                    placeholder="Blog Page 1"
@@ -105,7 +110,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}">
+                <a href="#!/profile">
                     <span class="glyphicon glyphicon-user"></span>
           </span>
                 </a>

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#!/user/{{model.userId}}" class="navbar-link pull-left wd-navbar-back">
+            <a href="#!/profile" class="navbar-link pull-left wd-navbar-back">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand">
@@ -10,7 +10,7 @@
             </a>
 
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
+                <a href="#!/website/new" class="navbar-link">
           <span class="glyphicon glyphicon-plus">
           </span>
                 </a>
@@ -40,7 +40,7 @@
         <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-10">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                    <a href="#!/website/{{website._id}}/page">
                         {{website.name}}
                     </a>
                 </div>
@@ -51,7 +51,7 @@
                     {{website.accessed | date:'shortDate'}}
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/website/{{website._id}}">
                         <span style="white-space: nowrap" class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -68,7 +68,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}">
+                <a href="#!/profile">
                     <span class="glyphicon glyphicon-user"></span>
 
                 </a>
