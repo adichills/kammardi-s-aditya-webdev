@@ -1,3 +1,13 @@
+input.form-control,
+textarea,
+select,
+form{
+    margin-bottom: 5px;
+}
+.input-group{
+    margin-bottom: 5px;
+}
+
 body{
     padding-top: 60px;
     padding-bottom: 60px;
@@ -9,4 +19,24 @@ body{
 .navbar-default > div {
     background-color: #222222;
     border-color: #080808;
+}
+
+.thumbnail{
+    padding-top:0px;
+    margin-top:20px;
+}
+
+.nh-toolbar{
+    position: absolute;
+    right: 30px;
+    background: black;
+    opacity: 0.5;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+    z-index: 1;
+}
+
+.thumbnail > .caption{
+
+    padding-top:0px;
 }

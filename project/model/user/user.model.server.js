@@ -14,17 +14,50 @@ nh_userModel.findUserByUsername = findUserByUsername;
 nh_userModel.findUserByCredentials = findUserByCredentials;
 nh_userModel.updateUser = updateUser;
 nh_userModel.deleteUser = deleteUser;
+nh_userModel.findUsersByIds = findUsersByIds;
+nh_userModel.findFollowersForUser = findFollowersForUser;
+nh_userModel.findFollowingForUser = findFollowingForUser;
+nh_userModel.removeUserFromFollowing= removeUserFromFollowing;
+nh_userModel.removeUserFromFollowers = removeUserFromFollowers;
 
 
 module.exports = nh_userModel;
 
+function removeUserFromFollowing(userId,followingId) {
+    return nh_userModel.update({_id: userId}, {$pull: {following:followingId}});
 
+}
+
+function removeUserFromFollowers(userId,followersId) {
+    return nh_userModel.update({_id: userId}, {$pull: {followers:followersId}});
+}
+
+function findUsersByIds(ids) {
+    return nh_userModel.find({_id:{$in:ids}});
+}
+
+function findFollowersForUser(userId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            return nh_userModel.find({_id:{$in:user.followers}})
+        })
+}
+
+function findFollowingForUser(userId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            return nh_userModel.find({_id:{$in:user.following}})
+        })
+}
 
 function createUser(user) {
     return nh_userModel.create(user)
         .then(function (user) {
-            nh_dashBoardModel.createDashboard(user._id);
-            return user;
+           return nh_dashBoardModel.createDashboard(user._id)
+                .then(function () {
+                    return user;
+                });
+
         });
 }
 

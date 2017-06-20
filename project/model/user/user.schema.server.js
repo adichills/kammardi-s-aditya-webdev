@@ -15,7 +15,9 @@ var nh_userSchema = mongoose.Schema({
     facebook: {
         id:    String,
         token: String
-    }
+    },
+    followers:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}],
+    following:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}]
 }, {collection: "NH_User"});
 
 module.exports = nh_userSchema;

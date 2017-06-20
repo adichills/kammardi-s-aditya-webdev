@@ -1,6 +1,8 @@
 /**
- * Created by Aditya on 6/14/2017.
+ * Created by Aditya on 6/19/2017.
  */
+
+
 var mongoose = require('mongoose');
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev_summer1_2017';
@@ -15,3 +17,7 @@ var mongoose = require("mongoose");
 mongoose.connect(connectionString);
 
 mongoose.Promise = require('q').Promise;
+
+
+require('./services/nh.user.service.server');
+

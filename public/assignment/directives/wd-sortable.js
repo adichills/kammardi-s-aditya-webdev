@@ -18,6 +18,7 @@
                 update:function (event,ui) {
                     var sIndex = ui.item.startPosition;
                     var eIndex = ui.item.index();
+                    ui.item.index
                     directiveController.reOrderWidgets(sIndex,eIndex);
 
                   //console.log(ui.item.index())

@@ -15,6 +15,8 @@ nh_dashBoardModel.findDashBoardById = findDashBoardById;
 nh_dashBoardModel.findDashBoardByUserId = findDashBoardByUserId;
 nh_dashBoardModel.deleteDashBoardForUser = deleteDashBoardForUser;
 
+module.exports = nh_dashBoardModel;
+
 function findDashBoardByUserId(userId) {
     return nh_dashBoardModel.find({_user:userId});
 }
