@@ -1,0 +1,31 @@
+<div class="container-fluid">
+<div class="row" ng-if="model.dashboard.news_media.length==0">
+    <div class="col-xs-12">
+        <div class="jumbotron">
+            <h3>Welcome to your dashboard</h3>
+            <p class="text-justify">Choose to read the latest articles from over 70 news media from all over the world, courtesy newsApi</p>
+
+        </div>
+        <a class="btn btn-success nh-strechWidth" href ="#!/newsMediaSearch">Add a news media to your dashboard</a>
+    </div>
+
+</div>
+<div class="row" ng-if="model.dashboard.news_media.length > 0">
+    <h3>Dashboard</h3>
+    <div class="col-xs-12">
+        <ul class="nav nav-tabs">
+            <li ng-repeat="source in model.user_news_media"
+                class="{{source.class}}"
+                role="presentation">
+
+                <a ng-click="model.selectNewsMedia(source.id,source.sortBysAvailable[0])">{{source.name}}</a>
+            </li>
+            <!--<li role="presentation" class="{{model.class}}"><a>Profile</a></li>-->
+            <!--<li role="presentation"><a>Messages</a></li>-->
+        </ul>
+    </div>
+    <div ng-include="'views/article/templates/article.view.client.html'">
+
+    </div>
+</div>
+</div>

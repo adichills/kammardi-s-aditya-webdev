@@ -1,0 +1,63 @@
+/**
+ * Created by Aditya on 5/28/2017.
+ */
+(function () {
+    angular
+        .module('NH')
+        .config(articleCondigurartion);
+
+    function articleCondigurartion($routeProvider) {
+        $routeProvider
+
+            .when('/article/:articleId',{
+                templateUrl:'views/article/templates/article.detail.view.client.html',
+                controller:'nh_articleDetailController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkCurrentUser
+                }
+
+            });
+
+
+
+
+    }
+
+    function checkCurrentUser($q, $location, nh_userService) {
+        var deferred = $q.defer();
+
+        nh_userService
+            .loggedin()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkLoggedIn(nh_userService, $q, $location) {
+        var deferred = $q.defer();
+
+        nh_userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+
+
+
+
+})()

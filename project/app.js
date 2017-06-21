@@ -20,4 +20,5 @@ mongoose.Promise = require('q').Promise;
 
 
 require('./services/nh.user.service.server');
+require('./services/dashboard.service.server');
 

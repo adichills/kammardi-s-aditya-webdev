@@ -14,11 +14,12 @@ nh_dashBoardModel.removeNewsMedia = removeNewsMedia;
 nh_dashBoardModel.findDashBoardById = findDashBoardById;
 nh_dashBoardModel.findDashBoardByUserId = findDashBoardByUserId;
 nh_dashBoardModel.deleteDashBoardForUser = deleteDashBoardForUser;
+nh_dashBoardModel.updateDashboard = updateDashboard;
 
 module.exports = nh_dashBoardModel;
 
 function findDashBoardByUserId(userId) {
-    return nh_dashBoardModel.find({_user:userId});
+    return nh_dashBoardModel.findOne({_user:userId});
 }
 
 function findDashBoardById(dashBoardId) {
@@ -39,6 +40,10 @@ function createDashBoard(userId) {
 
 function deleteDashBoard(dashBoardId) {
     return nh_dashBoardModel.remove({_id:user._id});
+}
+
+function updateDashboard(dashBoardId,dashboard) {
+    return nh_dashBoardModel.update({_id:dashBoardId},{$set:dashboard});
 }
 
 function addNewsMedia(newsMediaId,dashBoardId) {

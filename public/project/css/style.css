@@ -20,23 +20,74 @@ body{
     background-color: #222222;
     border-color: #080808;
 }
+.jumbotron p{
+    font-size:18px;
+}
+
+.nh-toolbar {
+    position: absolute;
+    right: 15px;
+    background: transparent;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+    z-index: 1;
+}
 
 .thumbnail{
     padding-top:0px;
     margin-top:20px;
 }
 
-.nh-toolbar{
-    position: absolute;
-    right: 30px;
-    background: black;
-    opacity: 0.5;
-    padding: 5px;
-    border-bottom-left-radius: 10px;
-    z-index: 1;
-}
+/*.nh-toolbar{*/
+    /*position: absolute;*/
+    /*right: 30px;*/
+    /*background: black;*/
+    /*opacity: 0.5;*/
+    /*padding: 5px;*/
+    /*border-bottom-left-radius: 10px;*/
+    /*z-index: 1;*/
+/*}*/
 
 .thumbnail > .caption{
 
     padding-top:0px;
+}
+
+
+.nh-responsive-img{
+    width:100%;
+    height:auto;
+}
+.nh-align-right{
+    text-align: right;
+}
+
+.nh-description{
+    line-height: 2;
+    font-family: sans-serif;
+    font-size: medium;
+}
+
+
+.nh-panel-height{
+    height:200px;
+}
+.nh-no-side-padding{
+    padding-left: 0px;
+    padding-right:0px;
+}
+.nh-side-padding-5px{
+    padding-right: 5px;
+    padding-left:5px;
+}
+.nh-padding-10px{
+    padding:10px;
+}
+.nh-padding-15px{
+    padding:15px;
+}
+
+.panel-heading > div > a{
+    padding-right: 5px;
+    padding-left:5px;
 }
