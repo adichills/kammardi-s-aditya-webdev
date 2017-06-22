@@ -17,7 +17,13 @@ var nh_userSchema = mongoose.Schema({
         token: String
     },
     followers:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}],
-    following:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}]
+    following:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}],
+    savedArticles:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_ArticleModel"}],
+    authoredArticles:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_ArticleModel"}],
+    comments:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_CommentModel"}]
+
+
+
 }, {collection: "NH_User"});
 
 module.exports = nh_userSchema;

@@ -10,21 +10,40 @@
 
         var model = this;
         model.userId = currentUser._id;
+        model.username = $routeParams['username'];
+        model.allFieldsReadOnly = false;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.logout = logout;
+        model.visitSavedArticleForProfile = visitSavedArticleForProfile;
+
 
         function init() {
-            nh_userService
-                .findUserByUserId(model.userId)
-                .then(renderUser, userError);
+            if(model.username ===null || typeof model.username ==='undefined'){
+                nh_userService
+                    .findUserByUserId(model.userId)
+                    .then(renderUser, userError);
+            }
+            else{
+                model.allFieldsReadOnly = true;
+                nh_userService.findUserByUsername(model.username)
+                    .then(renderUser,userError);
+            }
+
         }
         init();
 
         //model.user = nh_userService.findUserByUserId(model.userId);
 
-
+        function visitSavedArticleForProfile() {
+            if (model.username === null || typeof model.username === 'undefined'){
+                $location.url('/saved/article');
+            }
+            else{
+                $location.url('/saved/article/'+model.username);
+            }
+        }
 
 
         function updateUser(userId,user) {
@@ -60,6 +79,8 @@
                     model.message = "Error while un registering";
                 })
         }
+
+
 
 
 

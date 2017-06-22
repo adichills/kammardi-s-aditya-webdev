@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="nh-toolbar">
+                <div class="nh-toolbar-1">
                     <a class="btn btn-info">Read</a>
-                    <a class="btn btn-success">
+                    <a ng-if="!model.articleSaved" class="btn btn-success" ng-click="model.saveArticle(model.article)">
                         Save
                     </a>
                 </div>
@@ -19,6 +19,7 @@
                   </div>
                 </div>
                 <div class="panel-body">
+                    <div  ng-show="model.message" class="alert alert-info">{{model.message}}</div>
                     <h2>
                         {{model.article.title}}
                     </h2>
@@ -27,6 +28,27 @@
                     <div>
                         <p class="nh-description">{{model.article.description}}</p>
                     </div>
+
+                    <div ng-if="model.articleSaved">
+                        <h4>Add Comment</h4>
+                        <div class="input-group">
+                            <input type="text" ng-model="newComment" class="form-control">
+                            <span class="input-group-btn">
+                            <a class ="btn btn-default"
+                               ng-click = "model.addComment(newComment)"
+                               type="button">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                            </span>
+                        </div>
+                        <ul ng-show="model.comments" class="list-group">
+                            <li ng-repeat="comment in model.comments" class="list-group-item">
+                                <h5>{{comment._user.username}}</h5>
+                                <p>{{comment.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+
 
                 </div>
             </div>

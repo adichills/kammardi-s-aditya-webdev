@@ -24,7 +24,7 @@ body{
     font-size:18px;
 }
 
-.nh-toolbar {
+.nh-toolbar-1 {
     position: absolute;
     right: 15px;
     background: transparent;
@@ -38,15 +38,15 @@ body{
     margin-top:20px;
 }
 
-/*.nh-toolbar{*/
-    /*position: absolute;*/
-    /*right: 30px;*/
-    /*background: black;*/
-    /*opacity: 0.5;*/
-    /*padding: 5px;*/
-    /*border-bottom-left-radius: 10px;*/
-    /*z-index: 1;*/
-/*}*/
+.nh-toolbar{
+    position: absolute;
+    right: 30px;
+    background: black;
+    opacity: 0.5;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+    z-index: 1;
+}
 
 .thumbnail > .caption{
 

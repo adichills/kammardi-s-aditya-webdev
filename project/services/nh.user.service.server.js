@@ -172,7 +172,7 @@ function createUser(req,res) {
     var user = req.body;
     nh_userModel.createUser(user)
         .then(function (user) {
-            console.log(user);
+
             res.json(user);
         },function (err) {
             res.send(err);
@@ -200,7 +200,7 @@ function logout(req, res) {
 }
 
 function loggedin(req, res) {
-    console.log(req.user);
+
     if(req.isAuthenticated()) {
         res.json(req.user);
     } else {

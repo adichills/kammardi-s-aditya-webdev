@@ -31,12 +31,22 @@
 
 
             })
-            .when('/user',{
+
+
+            .when('/user/search',{
                 templateUrl:'views/user/templates/user.search.view.client.html',
                 controller:'nh_userSearchController',
                 controllerAs: 'model',
                 resolve:{
                     currentUser:checkLoggedIn
+                }
+            })
+            .when('/user/:username',{
+                templateUrl:'views/user/templates/profile.view.client.html',
+                controller:'nh_profileController',
+                controllerAs:'model',
+                resolve: {
+                    currentUser: checkLoggedIn
                 }
             })
 

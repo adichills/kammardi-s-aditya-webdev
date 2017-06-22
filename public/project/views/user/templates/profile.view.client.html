@@ -8,6 +8,7 @@
         <div class="form-group">
             <label for="username">Username</label>
             <input
+                    ng-readonly="model.allFieldsReadOnly"
                     type="text"
                     ng-model="model.user.username"
                     class="form-control"
@@ -18,6 +19,7 @@
             <label for="email">Email address</label>
             <input
                     type="email"
+                    ng-readonly="model.allFieldsReadOnly"
                     ng-model="model.user.email"
                     class="form-control"
                     id="email"
@@ -28,6 +30,7 @@
             <input
                     type="text"
                     ng-model="model.user.firstName"
+                    ng-readonly="model.allFieldsReadOnly"
                     class="form-control"
                     id="first-name"
                     placeholder="Alice">
@@ -37,6 +40,7 @@
             <input
                     type="text"
                     ng-model="model.user.lastName"
+                    ng-readonly="model.allFieldsReadOnly"
                     class="form-control"
                     id="last-name"
                     placeholder="Wonderland">
@@ -44,22 +48,34 @@
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="#!/dashboard"
-       >Dashboard</a>
+       ng-if="!model.allFieldsReadOnly"
+       href="#!/dashboard">
+       Dashboard</a>
     <a class="btn btn-info btn-block"
-    ng-click="model.updateUser(model.user._id,model.user)">Update</a>
+       ng-if="!model.allFieldsReadOnly"
+       ng-click="model.updateUser(model.user._id,model.user)">
+        Update</a>
+    <a class="btn btn-info btn-block"
+       ng-click="model.visitSavedArticleForProfile()">Saved Articles</a>
 
     <div class="thumbnail">
 
         <div class="nh-toolbar">
-            <a href = "#!/user">
+            <a href = "#!/user/search">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <h3>Following</h3>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="followed in model.following">
-                {{followed.username}}
+                <div class="row">
+                    <div class="col-xs-6"><h4>{{followed.username}}</h4></div>
+                    <div class="col-xs-6">
+                        <span class="label label-info">
+                            Saved Articles {{followed.savedArticles.length}}
+                        </span>
+                        </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -67,16 +83,36 @@
         <h3>Followers</h3>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="follower in  model.followers">
-                {{follower.username}}
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-8">
+                        <a href="#!/user/{{follower.username}}">
+                            {{follower.username}}
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+
+                             <span class="label label-info">
+                             Saved Articles {{follower.savedArticles.length}}
+                        </span>
+
+
+
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
 
 
-    <a href="#!/user" class="btn btn-info btn-block">Users</a>
+    <a href="#!/user/search"
+       ng-if="!model.allFieldsReadOnly"
+       class="btn btn-info btn-block">Users</a>
     <a class="btn btn-danger  btn-block"
+       ng-if="!model.allFieldsReadOnly"
        ng-click="model.logout()">Logout</a>
     <a class="btn btn-danger  btn-block"
+       ng-if="!model.allFieldsReadOnly"
        ng-click="model.deleteUser(model.userId)">Un-Register</a>
 </div>
 

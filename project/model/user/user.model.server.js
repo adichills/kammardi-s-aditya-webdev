@@ -20,6 +20,10 @@ nh_userModel.findFollowingForUser = findFollowingForUser;
 nh_userModel.removeUserFromFollowing= removeUserFromFollowing;
 nh_userModel.removeUserFromFollowers = removeUserFromFollowers;
 
+nh_userModel.addSavedArticleToUser = addSavedArticleToUser;
+nh_userModel.removeSavedArticlesFromUser = removeSavedArticlesFromUser;
+nh_userModel.addCommentsToUser = addCommentsToUser;
+nh_userModel.removeCommentsFromUser = removeCommentsFromUser;
 
 module.exports = nh_userModel;
 
@@ -36,10 +40,44 @@ function findUsersByIds(ids) {
     return nh_userModel.find({_id:{$in:ids}});
 }
 
+function addSavedArticleToUser(userId,articleId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            user.savedArticles.push(articleId);
+            return user.save();
+        })
+}
+
+function removeSavedArticlesFromUser(userId,articleId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            var index = user.savedArticles.indexOf(articleId);
+            user.savedArticles.splice(index,1);
+            return user.save();
+        })
+}
+function addCommentsToUser(userId,commentId){
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            user.comments.push(commentId)
+            return user.save();
+        })
+}
+
+function removeCommentsFromUser(userId,commentId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            var index = user.comments.indexOf(commentId);
+            user.comments.splice(index,1);
+            return user.save();
+        })
+}
+
 function findFollowersForUser(userId) {
     return nh_userModel.findById(userId)
         .then(function (user) {
             return nh_userModel.find({_id:{$in:user.followers}})
+
         })
 }
 
@@ -47,6 +85,9 @@ function findFollowingForUser(userId) {
     return nh_userModel.findById(userId)
         .then(function (user) {
             return nh_userModel.find({_id:{$in:user.following}})
+                .populate('savedArticles')
+                .exec();
+
         })
 }
 

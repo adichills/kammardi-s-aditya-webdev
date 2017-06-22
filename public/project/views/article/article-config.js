@@ -17,7 +17,25 @@
                     currentUser:checkCurrentUser
                 }
 
-            });
+            })
+            .when('/saved/article',{
+                templateUrl:'views/article/templates/article.view.client.html',
+                controller:'nh_savedArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+
+            })
+            .when('/saved/article/:username',{
+                templateUrl:'views/article/templates/article.view.client.html',
+                controller:'nh_savedArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+
+            })
 
 
 
