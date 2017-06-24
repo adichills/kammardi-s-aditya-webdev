@@ -37,6 +37,7 @@
 
         function saveArticle(article) {
             article._user = model.userId;
+            article.articleType = "NEWS";
             nh_articleService.saveArticle(article)
                 .then(function () {
                     model.message = "Article Saved";

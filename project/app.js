@@ -26,4 +26,5 @@ require('./services/nh.user.service.server');
 require('./services/dashboard.service.server');
 require('./services/article.service.server');
 require('./services/comment.service.server');
+require('./services/admin.service.server');
 

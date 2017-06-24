@@ -1,0 +1,53 @@
+<div class="panel panel-primary">
+    <div class="panel panel-heading">
+        Article
+    </div>
+    <div class="panel panel-body">
+        <div ng-show="model.error" class="alert alert-info">
+            {{model.error}}
+        </div>
+        <label for="title">Title</label>
+        <input id="title"
+               placeholder="Title"
+               ng-model="model.article.title"
+               class="form-control"/>
+
+        <label for="description">Description</label>
+        <textarea id="description"
+                  ng-model="model.article.description"
+                  placeholder="Small description"
+                  rows="5"
+                  class="form-control"></textarea>
+        <div class="panel panel-info">
+            <div class="panel-heading">Article Image</div>
+            <div class="panel-body">
+                <a class="btn btn-info btn-block"
+                   href="">
+                    Search
+                </a>
+
+                <label for="url">URL</label>
+                <input id="url"
+                       ng-model="model.article.urlToImage"
+                       placeholder="www.northeastern.edu"
+                       class="form-control"/>
+
+                <label for="myfile">Upload</label>
+                <form action="/api/nh/upload"   method="post" enctype="multipart/form-data">
+
+                    <input id="myfile"  name="myFile"    type="file" class="form-control"/>
+                    <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+                    <input  name="articleId"  value="{{model.article._id}}"   style="display: none"/>
+                    <button type="submit"    class="btn btn-block btn-info">Upload Image</button>
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <a ng-click="model.deleteWidget(model.editWidget._id)"
+           class="btn btn-block btn-danger">Delete</a>
+
+    </div>
+</div>

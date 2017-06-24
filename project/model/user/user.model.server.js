@@ -24,6 +24,7 @@ nh_userModel.addSavedArticleToUser = addSavedArticleToUser;
 nh_userModel.removeSavedArticlesFromUser = removeSavedArticlesFromUser;
 nh_userModel.addCommentsToUser = addCommentsToUser;
 nh_userModel.removeCommentsFromUser = removeCommentsFromUser;
+nh_userModel.changePassword = changePassword;
 
 module.exports = nh_userModel;
 
@@ -130,4 +131,12 @@ function deleteUser(userId) {
             return nh_userModel.remove({_id:userId});
         })
 
+}
+
+function changePassword(userId,password) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            user.password = password
+            return user.save();
+        })
 }

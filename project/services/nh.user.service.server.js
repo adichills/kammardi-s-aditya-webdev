@@ -51,12 +51,27 @@ app.post  ('/api/nh/logout', logout);
 app.post  ('/api/nh/register', register);
 app.post('/api/nh/unregister',unregister);
 
+app.put('/api/nh/changePassword/:userId',changePassword);
+
 app.get ('/auth/nh/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/auth/facebook/nh/callback',
     passport.authenticate('facebook', {
         successRedirect: '/project/index.html#!/profile',
         failureRedirect: '/project/index.html#!/login'
     }));
+
+function changePassword(req,res) {
+    var userId = req.params['userId'];
+    var passwordObj = req.body;
+
+    var encryptedPassword = bcrypt.hashSync(passwordObj.password);
+    nh_userModel.changePassword(userId,encryptedPassword)
+        .then(function (user) {
+            res.json(user);
+        },function (err) {
+            res.send(err);
+        })
+}
 
 function removeUserFromFollowers(req,res) {
     var userId = req.params['userId'];
@@ -198,6 +213,8 @@ function logout(req, res) {
     req.logout();
     res.sendStatus(200);
 }
+
+
 
 function loggedin(req, res) {
 

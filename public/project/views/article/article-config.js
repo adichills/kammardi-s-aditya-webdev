@@ -36,6 +36,36 @@
                 }
 
             })
+            .when('/publisher/article',{
+                templateUrl:'views/article/templates/article.view.client.html',
+                controller:'nh_publishedArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+
+            })
+            .when('/publisher/article/:username',{
+                templateUrl:'views/article/templates/article.view.client.html',
+                controller:'nh_publishedArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+
+            })
+
+            .when('/publisher/article/edit/:articleId',{
+                templateUrl:'views/article/templates/publisher.edit.article.view.client.html',
+                controller:'nh_publishedEditArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+
+            })
+
+
 
 
 

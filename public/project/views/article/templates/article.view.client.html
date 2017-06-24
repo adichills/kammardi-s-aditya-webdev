@@ -1,22 +1,39 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12" ng-repeat="article in model.articles">
-
-            <div class="thumbnail nh-padding-10px">
-                <div class="row">
-                    <div class="col-sm-6"><img class="nh-responsive-img" ng-src="{{article.urlToImage}}" alt=""></div>
-                    <div class="col-sm-6">
-                        <h2>
-                        <a ng-click="model.selectArticle(article)">
-                            {{article.title}}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-9">
+                {{model.mode}} Articles
+            </div>
+            <div class="col-xs-3 nh-align-right">
+                <span class="input-group-btn" ng-show="model.showCreateArticle">
+                        <a class="btn btn-default" type="button"
+                           ng-click="model.createArticle()">
+                            <span class="glyphicon glyphicon-plus"></span>
                         </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12" ng-repeat="article in model.articles">
 
-                        </h2>
+                <div class="thumbnail nh-padding-10px">
+                    <div class="row">
+                        <div class="col-sm-6"><img class="nh-responsive-img" ng-src="{{article.urlToImage}}" alt=""></div>
+                        <div class="col-sm-6">
+                            <h2>
+                                <a ng-click="model.selectArticle(article)">
+                                    {{article.title}}
+                                </a>
+
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
-
 </div>

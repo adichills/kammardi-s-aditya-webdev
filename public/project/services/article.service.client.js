@@ -23,6 +23,7 @@
             return $http.get(url)
                 .then(sendResponseData);
         }
+        
 
         function fetchArticleById(articleId) {
             var url = "/api/nh/savedArticle/"+articleId;

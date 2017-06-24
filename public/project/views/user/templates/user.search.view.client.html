@@ -1,53 +1,76 @@
-<div class="container-fluid">
-    <div class="row">
-        <h1>Users</h1>
+<div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-9 nh-panel-header-font">
+                    Users
+                </div>
+                <div ng-show="model.showCreate" class= col-xs-3>
+                    <span class="input-group-btn pull-right nh-right-adjustment-1">
+                        <a class="btn btn-default" type="button"
+                           href="#!/manage/user/create/newUser">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </span>
 
-        <div class="input-group">
-            <input ng-model="model.searchText" type="text" class="form-control">
-            <span class="input-group-btn">
-                <a ng-click="model.searchUser(model.searchText)"
-                   class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-                 </a>
-            </span>
+                </div>
+            </div>
+
         </div>
-    </div>
-
-    <div class="row">
-
-        <ul class="list-group">
-            <li ng-repeat="user in model.users"
-                class="list-group-item">
+        <div class="panel-body">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xs-10 col-md-10">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <h4>{{user.username}}</h4>
-                            </div>
-                            <div class="col-xs-6">
-                                <h4>
+                    <div class="input-group">
+                        <input ng-model="model.searchText" type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <a ng-click="model.searchUser(model.searchText)"
+                               class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <ul class="list-group">
+                        <li ng-repeat="user in model.users"
+                            class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-10 col-md-10">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4><a ng-click="model.userDetail(user.username)">{{user.username}}</a></h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h4>
                                     <span ng-if="user.unfollow" class="label label-info">
                                     Following
                                 </span>
-                                </h4>
+                                            </h4>
 
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div ng-if="user.displayFollowOptions" class="col-xs-2 col-md-2">
+                                    <h4>
+                                        <a class=" glyphicon glyphicon-thumbs-up"
+                                           ng-if="!user.unfollow"
+                                           ng-click="model.follow(user)"></a>
+
+                                        <a class="glyphicon glyphicon-thumbs-down"
+                                           ng-if="user.unfollow"
+                                           ng-click="model.unfollow(user)"></a>
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                    <div ng-if="user.displayFollowOptions" class="col-xs-2 col-md-2">
-                        <h4>
-                        <a class=" glyphicon glyphicon-thumbs-up"
-                           ng-if="!user.unfollow"
-                           ng-click="model.follow(user)"></a>
-
-                        <a class="glyphicon glyphicon-thumbs-down"
-                           ng-if="user.unfollow"
-                           ng-click="model.unfollow(user)"></a>
-                        </h4>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-        </ul>
+            </div>
+
+        </div>
     </div>
+
 </div>

@@ -1,0 +1,228 @@
+<div class="panel panel-primary">
+    <div class="panel panel-heading">
+        <div class="row">
+            <div class="col-xs-6 nh-panel-header-font">
+                Manage Users
+            </div>
+            <div class= "col-xs-6 nh-align-right">
+
+
+                    <a class="btn btn-success">Saved Articles</a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-body">
+        <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <form>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input
+                                ng-readonly="model.allFieldsReadOnly"
+                                type="text"
+                                ng-model="model.user.username"
+                                class="form-control"
+                                id="username"
+                                placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input
+                                type="email"
+                                ng-readonly="model.allFieldsReadOnly"
+                                ng-model="model.user.email"
+                                class="form-control"
+                                id="email"
+                                placeholder="alice@wonderland.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input
+                                type="text"
+                                ng-model="model.user.firstName"
+                                ng-readonly="model.allFieldsReadOnly"
+                                class="form-control"
+                                id="first-name"
+                                placeholder="Alice">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input
+                                type="text"
+                                ng-model="model.user.lastName"
+                                ng-readonly="model.allFieldsReadOnly"
+                                class="form-control"
+                                id="last-name"
+                                placeholder="Wonderland">
+                    </div>
+                    <div ng-if="model.showCreate" class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                                type="password"
+                                ng-model="model.user.password"
+                                class="form-control"
+                                id="password">
+
+                    </div>
+
+                    <a ng-if="model.showChangePassword" class="btn btn-info btn-block"
+                       ng-click="model.allowPasswordChange()">Change Password</a>
+                    <div ng-if="model.showNewPassword" class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password"
+                               ng-model="model.newPassword"
+                               class="form-control"
+                               id ='newPassword'>
+                    </div>
+                    <div ng-if="model.showNewPassword" class="form-group">
+                        <label for="verifyPassword">Verify Password</label>
+                        <input type="password"
+                               ng-model="model.verifyPassword"
+                               class="form-control"
+                               id ='verifyPassword'>
+
+                        <a ng-click="model.changePassword(model.user._id,model.newPassword,model.verifyPassword)"
+                            class="btn btn-block btn-success">
+                            Set New Password</a>
+                    </div>
+
+
+
+
+
+                    <div class="panel panel-success">
+                        <div class="panel panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <h4>Roles</h4>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="input-group">
+                                        <select id="size"
+                                                ng-model="model.selectedRole"
+                                                class="form-control">
+                                            <option ng-repeat="role in model.roles" value="{{role}}">{{role}}</option>
+                                        </select>
+                                        <span class="input-group-btn">
+                                    <a class="btn btn-default"
+                                       ng-click="model.addRole(model.selectedRole)"
+                                       type="button">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="role in model.user.role">
+                                    <div class="row">
+                                        <div class="col-xs-9">
+                                            {{role}}
+                                        </div>
+                                        <div class="col-xs-3 nh-align-right">
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default" type="button"
+                                                ng-click="model.removeRole(role)">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span ng-if="model.showUpdate" class="input-group-btn">
+                        <a class="btn btn-success btn-block" type="button"
+                           ng-click="model.updateUser(model.user._id,model.user)">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </span>
+                    <span ng-if="model.showUpdate" class="input-group-btn">
+                        <a class="btn btn-danger btn-block" type="button"
+                           ng-click="model.deleteUser(model.user._id)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </span>
+                    <span ng-if="model.showCreate" class="input-group-btn">
+                        <a class="btn btn-success" type="button"
+                           ng-click="model.createNewUser(model.user)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </span>
+
+
+                </form>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                Following
+                            </div>
+                            <div class="col-xs-3">
+                                        <span class="input-group-btn pull-right nh-right-adjustment-1">
+                                            <a class="btn btn-default" type="button"
+                                               ng-click="model.createNewUser(model.user)">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="follower in model.following">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a>{{follower.username}}</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a class="btn"><span class="label label-info">Saved Articles {{follower.savedArticles.length}}</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                Followed By
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="follower in model.followers">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a>{{follower.username}}</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a class="btn"><span class="label label-info">Saved Articles {{follower.savedArticles.length}}</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

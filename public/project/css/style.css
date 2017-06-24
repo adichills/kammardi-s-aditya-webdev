@@ -7,6 +7,14 @@ form{
 .input-group{
     margin-bottom: 5px;
 }
+.nh-panel-header-font{
+    font-size:20px;
+}
+.nh-right-adjustment-1{
+
+    right:40px;
+}
+
 
 body{
     padding-top: 60px;
@@ -74,6 +82,12 @@ body{
 }
 .nh-no-side-padding{
     padding-left: 0px;
+    padding-right:0px;
+}
+.nh-no-left-padding{
+    padding-left:0px;
+}
+.nh-no-right-padding{
     padding-right:0px;
 }
 .nh-side-padding-5px{

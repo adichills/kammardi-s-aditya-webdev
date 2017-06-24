@@ -23,7 +23,8 @@
             findAllFollowingForUser : findAllFollowingForUser,
             findAllFollowersForUser:findAllFollowersForUser,
             removeUserFromFollowers:removeUserFromFollowers,
-            removeUserFromFollowing:removeUserFromFollowing
+            removeUserFromFollowing:removeUserFromFollowing,
+            changePassword:changePassword
 
         };
         return api;
@@ -154,6 +155,12 @@
         function findUserByCredentials(username,password) {
             var url = "/api/nh/user?username="+username+"&password="+password;
             return $http.get(url)
+                .then(sendResponseData);
+        }
+
+        function changePassword(userId,password) {
+            var url ='/api/nh/changePassword/'+userId;
+            return $http.put(url,{password:password})
                 .then(sendResponseData);
         }
     }
