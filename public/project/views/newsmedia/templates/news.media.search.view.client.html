@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="input-group">
-            <input ng-model="searchText" type="text" class="form-control">
+            <input ng-model="searchText" type="text" placeholder="Search News Media" class="form-control">
             <span class="input-group-btn">
                 <a ng-click="model.searchForNewsMedia(searchText)" class="btn btn-default" type="button">
                 <span class="glyphicon glyphicon-search"></span>
@@ -10,6 +10,9 @@
         </div>
     </div>
     <div class="row">
+        <div ng-show="model.message" class="alert alert-info">
+            {{model.message}}
+        </div>
 
         <div class="panel panel-default col-sm-6 nh-panel-height nh-no-side-padding " ng-repeat="media in model.searchResults">
             <div class="panel-heading">
@@ -17,7 +20,7 @@
                 <div class="pull-right">
                     <a class="glyphicon glyphicon-globe"></a>
                     <a class="glyphicon glyphicon-plus" ng-click="model.addNewsMediaToDashboard(media.id)"></a>
-                    <a class="glyphicon glyphicon-hand-right"></a>
+                    <a class="glyphicon glyphicon-eye-open"></a>
                 </div>
 
 

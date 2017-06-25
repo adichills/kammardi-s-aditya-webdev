@@ -23,7 +23,7 @@
         }
 
         function init2() {
-            nh_articleService.fetchArticlesByUserId(model.userId)
+            nh_articleService.fetchArticlesByUserId(model.userId,'NEWS')
                 .then(function (articles) {
                     model.articles = articles;
                 },function (err) {
@@ -68,7 +68,7 @@
         }
 
         function init2() {
-            nh_articleService.fetchArticlesByUserId(model.userId)
+            nh_articleService.fetchArticlesByUserId(model.userId,'PUBLISHER')
                 .then(function (articles) {
                     model.articles = articles;
                 },function (err) {

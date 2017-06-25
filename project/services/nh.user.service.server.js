@@ -19,7 +19,7 @@ var facebookConfig = {
 
 
 
-passport.use(new LocalStrategy(localStrategy));
+passport.use(new LocalStrategy({passReqToCallback:true},localStrategy));
 passport.use(new FacebookStrategy(facebookConfig,facebookStrategy));
 
 passport.serializeUser(serializeUser);
@@ -36,8 +36,8 @@ app.get('/api/nh/user',findAllUsers);
 app.get('/api/nh/user/followers/:userId',findAllFollowersForUser);
 app.get('/api/nh/user/following/:userId',findAllFollowingForUser);
 
-app.delete('/api/nh/user/followers/:userId/:followerId',removeUserFromFollowers);
-app.delete('/api/nh/user/following/:userId/:followingId',removeUserFromFollowing);
+app.delete('/api/nh/user/followers/:userId/:followerId/:mode',addremoveUserFromFollowers);
+app.delete('/api/nh/user/following/:userId/:followingId/:mode',addremoveUserFromFollowing);
 
 
 app.get('/api/nh/user/:userId',findUserById);
@@ -73,11 +73,12 @@ function changePassword(req,res) {
         })
 }
 
-function removeUserFromFollowers(req,res) {
+function addremoveUserFromFollowers(req,res) {
     var userId = req.params['userId'];
     var followerId = req.params['followerId'];
-    
-    nh_userModel.removeUserFromFollowers(userId,followerId)
+    var mode = req.params['mode'];
+
+    nh_userModel.addremoveUserFromFollowers(userId,followerId,mode)
         .then(function (user) {
             res.json(user)
         },function (error) {
@@ -85,11 +86,12 @@ function removeUserFromFollowers(req,res) {
         })
 }
 
-function removeUserFromFollowing(req,res) {
+function addremoveUserFromFollowing(req,res) {
     var userId = req.params['userId'];
     var followingId = req.params['followingId'];
+    var mode = req.params['mode'];
 
-    nh_userModel.removeUserFromFollowing(userId,followingId)
+    nh_userModel.addremoveUserFromFollowing(userId,followingId)
         .then(function (user) {
            res.json(user);
         },function (error) {
@@ -148,11 +150,13 @@ function facebookStrategy(token, refreshToken, profile, done) {
         });
 }
 
-function localStrategy(username, password, done) {
+function localStrategy(req,username, password, done) {
     nh_userModel
         .findUserByUsername(username)
         .then(function (user) {
             if (user && bcrypt.compareSync(password, user.password)) {
+                var credentials = req.body;
+                user.loggedinAs = credentials.role;
                 done(null, user);
             } else {
                 done(null, false);
@@ -185,6 +189,7 @@ function unregister(req,res) {
 
 function createUser(req,res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     nh_userModel.createUser(user)
         .then(function (user) {
 

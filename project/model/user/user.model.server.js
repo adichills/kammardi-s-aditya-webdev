@@ -17,10 +17,11 @@ nh_userModel.deleteUser = deleteUser;
 nh_userModel.findUsersByIds = findUsersByIds;
 nh_userModel.findFollowersForUser = findFollowersForUser;
 nh_userModel.findFollowingForUser = findFollowingForUser;
-nh_userModel.removeUserFromFollowing= removeUserFromFollowing;
-nh_userModel.removeUserFromFollowers = removeUserFromFollowers;
+nh_userModel.addremoveUserFromFollowing= addremoveUserFromFollowing;
+nh_userModel.addremoveUserFromFollowers = addremoveUserFromFollowers;
 
 nh_userModel.addSavedArticleToUser = addSavedArticleToUser;
+nh_userModel.addAuthoredArticlesToUser = addAuthoredArticlesToUser;
 nh_userModel.removeSavedArticlesFromUser = removeSavedArticlesFromUser;
 nh_userModel.addCommentsToUser = addCommentsToUser;
 nh_userModel.removeCommentsFromUser = removeCommentsFromUser;
@@ -28,13 +29,23 @@ nh_userModel.changePassword = changePassword;
 
 module.exports = nh_userModel;
 
-function removeUserFromFollowing(userId,followingId) {
-    return nh_userModel.update({_id: userId}, {$pull: {following:followingId}});
+function addremoveUserFromFollowing(userId,followingId,mode) {
+    if (mode === 'add'){
+        return nh_userModel.update({_id: userId}, {$push: {following:followingId}})
+    }
+    else{
+        return nh_userModel.update({_id: userId}, {$pull: {following:followingId}});
+    }
 
 }
 
-function removeUserFromFollowers(userId,followersId) {
-    return nh_userModel.update({_id: userId}, {$pull: {followers:followersId}});
+function addremoveUserFromFollowers(userId,followersId,mode) {
+    if (mode ==='add'){
+        return nh_userModel.update({_id: userId}, {$push: {followers:followersId}});
+    }
+    else{
+        return nh_userModel.update({_id: userId}, {$pull: {followers:followersId}});
+    }
 }
 
 function findUsersByIds(ids) {
@@ -45,6 +56,14 @@ function addSavedArticleToUser(userId,articleId) {
     return nh_userModel.findById(userId)
         .then(function (user) {
             user.savedArticles.push(articleId);
+            return user.save();
+        })
+}
+
+function addAuthoredArticlesToUser(userId,articleId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            user.authoredArticles.push(articleId);
             return user.save();
         })
 }

@@ -2,12 +2,39 @@
     <div class="panel panel-heading">
         <div class="row">
             <div class="col-xs-6 nh-panel-header-font">
-                Manage Users
+                {{model.headerText}}
             </div>
             <div class= "col-xs-6 nh-align-right">
 
 
-                    <a class="btn btn-success">Saved Articles</a>
+                    <span ng-if="model.showUnfollow && model.showFollowButtons" class="">
+                        <a class="btn btn-default" type="button"
+                           ng-click="model.addremoveUserFromFollowing(model.visitingUserId,model.user._id,'remove')">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                        </a>
+                    </span>
+
+                    <span ng-if="!model.showUnfollow && model.showFollowButtons" class="">
+                        <a class="btn btn-default" type="button"
+                           ng-click="model.addremoveUserFromFollowing(model.visitingUserId,model.user._id,'add')">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </a>
+                    </span>
+
+
+                <span class="">
+                        <a class="btn btn-default" type="button"
+                           href="#!/saved/article/{{model.user.username}}">
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                        </a>
+                 </span>
+                <span ng-if="model.user.role==='PUBLISHER'" class="">
+                        <a class="btn btn-default" type="button"
+                           href="#!/publisher/article/{{model.user.username}}">
+                            <span class="glyphicon glyphicon-tags"></span>
+                        </a>
+                 </span>
+
 
             </div>
         </div>
@@ -15,6 +42,7 @@
     </div>
     <div class="panel-body">
         <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+        <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <form>
@@ -88,58 +116,25 @@
                             class="btn btn-block btn-success">
                             Set New Password</a>
                     </div>
-
-
-
-
-
-                    <div class="panel panel-success">
-                        <div class="panel panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h4>Roles</h4>
-                                </div>
-                                <div class="col-xs-9">
-                                    <div class="input-group">
-                                        <select id="size"
-                                                ng-model="model.selectedRole"
-                                                class="form-control">
-                                            <option ng-repeat="role in model.roles" value="{{role}}">{{role}}</option>
-                                        </select>
-                                        <span class="input-group-btn">
-                                    <a class="btn btn-default"
-                                       ng-click="model.addRole(model.selectedRole)"
-                                       type="button">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    </a>
-                                </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="role in model.user.role">
-                                    <div class="row">
-                                        <div class="col-xs-9">
-                                            {{role}}
-                                        </div>
-                                        <div class="col-xs-3 nh-align-right">
-                                            <span class="input-group-btn">
-                                                <a class="btn btn-default" type="button"
-                                                ng-click="model.removeRole(role)">
-                                                    <span class="glyphicon glyphicon-remove"></span>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-
-
-                                </li>
-                            </ul>
-                        </div>
+                    <div ng-if="model.showCreate" class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" ng-model="model.user.role" class="form-control">
+                            <option value="ADMIN">Admin</option>
+                            <option value="NORMAL">Normal</option>
+                            <option value="PUBLISHER">Publisher</option>
+                        </select>
                     </div>
+                    <div ng-if="!model.showCreate">
+                        <label for="roleR">Role</label>
+                        <input
+                                ng-readonly="true"
+                                type="text"
+                                ng-model="model.user.role"
+                                class="form-control"
+                                id="roleR"
+                                placeholder="Username">
+                    </div>
+
                     <span ng-if="model.showUpdate" class="input-group-btn">
                         <a class="btn btn-success btn-block" type="button"
                            ng-click="model.updateUser(model.user._id,model.user)">
@@ -153,7 +148,7 @@
                         </a>
                     </span>
                     <span ng-if="model.showCreate" class="input-group-btn">
-                        <a class="btn btn-success" type="button"
+                        <a class="btn btn-success btn-block" type="button"
                            ng-click="model.createNewUser(model.user)">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
@@ -169,10 +164,10 @@
                             <div class="col-xs-9">
                                 Following
                             </div>
-                            <div class="col-xs-3">
+                            <div ng-if="model.mode=='profile'" class="col-xs-3">
                                         <span class="input-group-btn pull-right nh-right-adjustment-1">
                                             <a class="btn btn-default" type="button"
-                                               ng-click="model.createNewUser(model.user)">
+                                               href="#!/user/search">
                                                 <span class="glyphicon glyphicon-plus"></span>
                                             </a>
                                         </span>
@@ -185,10 +180,22 @@
                             <li class="list-group-item" ng-repeat="follower in model.following">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a>{{follower.username}}</a>
+                                        <a href ="#!/profile/view/{{follower.username}}">{{follower.username}}</a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a class="btn"><span class="label label-info">Saved Articles {{follower.savedArticles.length}}</span></a>
+                                        <a href="#!/saved/article/{{follower.username}}"
+                                           class="btn">
+                                            <span class="label label-info">
+                                                Saved Articles {{follower.savedArticles.length}}
+                                            </span>
+                                        </a>
+                                        <a ng-if="follower.role ==='PUBLISHER'"
+                                           href="#!/publisher/article/{{follower.username}}"
+                                           class="btn">
+                                            <span class="label label-info">
+                                                Published {{follower.authoredArticles.length}}
+                                            </span>
+                                        </a>
                                     </div>
                                 </div>
                             </li>
@@ -209,10 +216,22 @@
                             <li class="list-group-item" ng-repeat="follower in model.followers">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a>{{follower.username}}</a>
+                                        <a href ="#!/profile/view/{{follower.username}}">{{follower.username}}</a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a class="btn"><span class="label label-info">Saved Articles {{follower.savedArticles.length}}</span></a>
+                                        <a href="#!/saved/article/{{follower.username}}"
+                                           class="btn">
+                                            <span class="label label-info">
+                                                Saved Articles {{follower.savedArticles.length}}
+                                            </span>
+                                        </a>
+                                        <a ng-if="follower.role ==='PUBLISHER'"
+                                           href="#!/publisher/article/{{follower.username}}"
+                                           class="btn">
+                                            <span class="label label-info">
+                                                 Published {{follower.authoredArticles.length}}
+                                            </span>
+                                        </a>
                                     </div>
                                 </div>
                             </li>

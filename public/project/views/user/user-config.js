@@ -21,9 +21,9 @@
                 controllerAs:'model'
 
             })
-            .when('/profile',{
-                templateUrl:'views/user/templates/profile.view.client.html',
-                controller:'nh_profileController',
+            .when('/profile/:mode',{
+                templateUrl:'views/user/templates/manage.users.view.client.html',
+                controller:'nh_manageUserController',
                 controllerAs:'model',
                 resolve: {
                     currentUser: checkLoggedIn
@@ -41,9 +41,9 @@
                     currentUser:checkLoggedIn
                 }
             })
-            .when('/user/:username',{
-                templateUrl:'views/user/templates/profile.view.client.html',
-                controller:'nh_profileController',
+            .when('/profile/:mode/:username',{
+                templateUrl:'views/user/templates/manage.users.view.client.html',
+                controller:'nh_manageUserController',
                 controllerAs:'model',
                 resolve: {
                     currentUser: checkLoggedIn
@@ -74,6 +74,7 @@
                     currentUser: checkLoggedIn
                 }
             })
+
 
 
 

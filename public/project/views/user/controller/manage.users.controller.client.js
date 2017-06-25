@@ -3,67 +3,11 @@
         .module("NH")
         .controller("nh_manageUserController",nh_manageUserController);
 
-    function nh_manageUserController(currentUser,$location,$routeParams,nh_userService) {
+    function nh_manageUserController(currentUser,$location,$routeParams,nh_userService,$route) {
 
         var model = this;
         model.mode = $routeParams["mode"];
-
-        function init() {
-            if(model.mode === 'create'){
-                model.user = {role:[]};
-                model.roles = ['ADMIN','NORMAL','PUBLISHER'];
-                model.selectedRole = "";
-                model.showCreate = true;
-                model.showChangePassword=false;
-                model.showNewPassword = false;
-
-            }
-            else if(model.mode ==="edit"){
-                model.showCreate = false;
-                model.showChangePassword = true;
-                model.showNewPassword = false;
-                model.showUpdate = true;
-                model.roles = [];
-                model.username = $routeParams['username'];
-                nh_userService.findUserByUsername(model.username)
-                    .then(function (user) {
-                        model.user = user;
-                        if (typeof model.user ==='undefined' || model.user.role === null || model.user.role.length ===0){
-                            model.roles = ['ADMIN','NORMAL','PUBLISHER'];
-                        }
-                        else{
-                            if(!isInArray('NORMAL',model.user.role)){
-                                model.roles.push('NORMAL');
-                            }
-                            if(!isInArray('PUBLISHER',model.user.role)){
-                                model.roles.push('PUBLISHER');
-                            }
-                            if(!isInArray('ADMIN',model.user.role)){
-                                model.roles.push('ADMIN');
-                            }
-                        }
-                        renderFollowersAndFollowing(user);
-
-
-                    })
-            }
-        }
-        init();
-
-        function renderFollowersAndFollowing(user) {
-            nh_userService.findAllFollowingForUser(user._id)
-                .then(function (following) {
-                    model.following = following;
-                });
-            nh_userService.findAllFollowersForUser(user._id)
-                .then(function (followers) {
-                    model.followers = followers;
-                })
-        }
-
-        function isInArray(value, array) {
-            return array.indexOf(value) > -1;
-        }
+        model.headerText = "Manage Users";
 
         model.createNewUser = createNewUser;
         model.addRole = addRole;
@@ -72,18 +16,8 @@
         model.allowPasswordChange = allowPasswordChange;
         model.changePassword = changePassword;
         model.deleteUser = deleteUser;
-
-        function allowPasswordChange() {
-            model.showNewPassword = true;
-            model.showChangePassword = false;
-        }
-        function deleteUser(userId) {
-            nh_userService.deleteUser(userId)
-                .then(function () {
-                    $location.url("/admin/user");
-                })
-        }
-
+        model.addremoveUserFromFollowers = addremoveUserFromFollowers;
+        model.addremoveUserFromFollowing = addremoveUserFromFollowing;
 
 
         function createNewUser(user) {
@@ -110,6 +44,136 @@
 
                     });
         }
+
+
+
+        function userEditable(mode,currentUser) {
+
+            if(mode==='edit' && (currentUser.role.indexOf("ADMIN")>-1) ){
+
+                return true;
+            }
+            else if (mode==='profile'){
+                    return true;
+            }
+
+            else{
+                return false;
+            }
+        }
+
+        function init() {
+            if(model.mode === 'create'){
+                model.user = {role:[]};
+                model.roles = ['ADMIN','NORMAL','PUBLISHER'];
+                model.selectedRole = "";
+                model.showCreate = true;
+                model.showChangePassword=false;
+                model.showNewPassword = false;
+
+
+            }
+            else if(model.mode ==="edit" ||model.mode ==='view' ||model.mode==='profile'){
+                model.showCreate = false;
+                if(userEditable(model.mode,currentUser)){
+                    model.showChangePassword = true;
+                    model.showNewPassword = false;
+                    model.showUpdate = true;
+                }
+                else{
+                    model.showChangePassword = false;
+                    model.showNewPassword = false;
+                    model.showUpdate = false;
+                }
+
+                model.roles = [];
+                model.username = $routeParams['username'];
+
+                if(model.mode ==='profile'){
+                    model.username = currentUser.username;
+                    model.headerText = "Profile";
+                }
+                if(model.mode==='view'){
+                    model.headerText ='User';
+                }
+
+                nh_userService.findUserByUsername(model.username)
+                    .then(function (user) {
+                        model.user = user;
+
+                        if(model.mode ==='view'){
+
+                            if(currentUser._id !== user._id){
+                                model.showFollowButtons = true;
+                                model.visitingUserId = currentUser._id;
+                                if (model.user.followers.indexOf(currentUser._id)>-1){
+                                    model.showUnfollow = true
+                                }
+                                else{
+                                    model.showUnfollow = false;
+                                }
+                            }
+
+
+
+                        }
+
+                        renderFollowersAndFollowing(user);
+
+
+                    })
+            }
+        }
+        init();
+
+        function renderFollowersAndFollowing(user) {
+            nh_userService.findAllFollowingForUser(user._id)
+                .then(function (following) {
+                    model.following = following;
+                });
+            nh_userService.findAllFollowersForUser(user._id)
+                .then(function (followers) {
+                    model.followers = followers;
+                })
+        }
+
+        function isInArray(value, array) {
+            return array.indexOf(value) > -1;
+        }
+
+
+        function addremoveUserFromFollowing(userId,followIngId,mode) {
+            nh_userService.addremoveUserFromFollowing(userId,followIngId,mode)
+                .then(function () {
+                    nh_userService.addremoveUserFromFollowers(followIngId,userId,mode)
+                        .then(function () {
+                            $route.reload();
+                        })
+                })
+        }
+        function addremoveUserFromFollowers(userId,followerId,mode) {
+            nh_userService.addremoveUserFromFollowers(userId,followerId,mode)
+                .then(function () {
+                    nh_userService.addremoveUserFromFollowing(followerId,userId,mode)
+                        .then(function () {
+                            $route.reload();
+                        })
+                })
+        }
+
+        function allowPasswordChange() {
+            model.showNewPassword = true;
+            model.showChangePassword = false;
+        }
+        function deleteUser(userId) {
+            nh_userService.deleteUser(userId)
+                .then(function () {
+                    $location.url("/admin/user");
+                })
+        }
+
+
+
 
         function userAlreadyExists(found) {
             if (found!==null) {

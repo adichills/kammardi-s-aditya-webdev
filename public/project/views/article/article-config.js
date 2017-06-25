@@ -64,6 +64,15 @@
                 }
 
             })
+            .when('/publisher/article/edit/:articleId/search',{
+                templateUrl:'views/article/templates/article.flicker.search.view.client.html',
+                controller: 'nh_FlickrImageSearchController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+
+            })
 
 
 

@@ -41,6 +41,15 @@ body{
     z-index: 1;
 }
 
+.nh-toolbar-2 {
+    position: absolute;
+    right: 0px;
+    background: transparent;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+    z-index: 1;
+}
+
 .thumbnail{
     padding-top:0px;
     margin-top:20px;
@@ -59,6 +68,10 @@ body{
 .thumbnail > .caption{
 
     padding-top:0px;
+}
+
+.nh-thumbnail-height{
+    height:200px;
 }
 
 
@@ -93,6 +106,10 @@ body{
 .nh-side-padding-5px{
     padding-right: 5px;
     padding-left:5px;
+}
+.nh-side-padding-15px{
+    padding-right: 15px;
+    padding-left:15px;
 }
 .nh-padding-10px{
     padding:10px;

@@ -6,16 +6,22 @@
         .module('NH')
         .controller('nh_registerController', nh_registerController);
 
-    function nh_registerController($location,nh_userService) {
+    function nh_registerController($location,nh_userService,$window) {
 
         var model = this;
 
 
 
             model.register = register;
+            model.selectedRole = "";
 
 
         function register(username, password,password2) {
+
+            if (model.selectedRole===""){
+                model.message ="Please select a role";
+                return;
+            }
 
             if(username === null || username === '' || typeof username === 'undefined'){
                 model.error = "username field cannot be empty";
@@ -42,11 +48,13 @@
                 function () {
                     var newUser = {
                         username : username,
-                        password : password
+                        password : password,
+                        role:model.selectedRole
                     };
                     nh_userService.register(newUser)
                         .then(function (newUser) {
-                            $location.url('/profile');
+                            $window.location.reload();
+                            $location.url('/profile/profile');
                         });
 
                 });

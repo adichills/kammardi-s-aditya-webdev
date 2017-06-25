@@ -6,16 +6,19 @@
         .module('NH')
         .controller('nh_loginController', nh_loginController);
 
-    function nh_loginController($location,nh_userService) {
+    function nh_loginController($location,nh_userService,$timeout,$route,$window) {
 
         var model = this;
-
-
-
-            model.login = login;
+        model.login = login;
+        model.selectedRole = ""
 
 
         function login(username, password) {
+
+            if (model.selectedRole===""){
+                model.message ="Please select a role";
+                return;
+            }
 
             if(username === null || username === '' || typeof username === 'undefined'){
                 model.message = "username field cannot be empty";
@@ -27,14 +30,33 @@
                 return;
             }
 
-            nh_userService.login(username,password)
+            nh_userService.login(username,password,model.selectedRole)
                 .then(userFound,userNameOrPasswordDoesNotMatch)
 
 
         }
 
         function userFound(found){
-            $location.url('/profile');
+
+            if (found.role === model.selectedRole){
+                $window.location.reload();
+
+                if(found.role ==="ADMIN"){
+                    $location.url('/admin');
+                }
+                else if (found.role ==="NORMAL"){
+                    $location.url('/dashboard');
+                }
+                else{
+                    $location.url('/publisher/article')
+                }
+
+            }
+            else{
+                model.message ="selected role does not match";
+            }
+
+
         }
         function userNameOrPasswordDoesNotMatch(found) {
             model.message = "Sorry username or password does not match !!! Try again";

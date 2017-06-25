@@ -1,31 +1,98 @@
 <div class="container-fluid">
-<div class="row" ng-if="model.dashboard.news_media.length==0">
-    <div class="col-xs-12">
-        <div class="jumbotron">
-            <h3>Welcome to your dashboard</h3>
-            <p class="text-justify">Choose to read the latest articles from over 70 news media from all over the world, courtesy newsApi</p>
-
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3 nh-panel-header-font">
+                    Dashboard
+                </div>
+                <div class="col-xs-9 nh-align-right">
+                    <a class="btn btn-default"
+                       ng-click="model.viewAllNewsMedia()"
+                       type="button">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </a>
+                    <a class="btn btn-default"
+                       href="#!/saved/article"
+                       type="button">
+                        <span class="glyphicon glyphicon-bookmark"></span>
+                    </a>
+                    <a class="btn btn-default"
+                       href="#!/newsMediaSearch"
+                       type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <a class="btn btn-success nh-strechWidth" href ="#!/newsMediaSearch">Add a news media to your dashboard</a>
-    </div>
+        <div class="panel-body">
+            <div class="row" ng-if="model.dashboard.news_media.length==0">
+                <div class="col-xs-12">
+                    <div class="jumbotron">
+                        <h3>Welcome to your dashboard</h3>
+                        <p class="text-justify">Choose to read the latest articles from over 70 news media from all over the world, courtesy newsApi</p>
 
-</div>
-<div class="row" ng-if="model.dashboard.news_media.length > 0">
-    <h3>Dashboard</h3>
-    <div class="col-xs-12">
-        <ul class="nav nav-tabs">
-            <li ng-repeat="source in model.user_news_media"
-                class="{{source.class}}"
-                role="presentation">
+                    </div>
+                    <a class="btn btn-success nh-strechWidth" href ="#!/newsMediaSearch">Add a news media to your dashboard</a>
+                </div>
 
-                <a ng-click="model.selectNewsMedia(source.id,source.sortBysAvailable[0])">{{source.name}}</a>
-            </li>
-            <!--<li role="presentation" class="{{model.class}}"><a>Profile</a></li>-->
-            <!--<li role="presentation"><a>Messages</a></li>-->
-        </ul>
-    </div>
-    <div ng-include="'views/article/templates/article.view.client.html'">
+            </div>
+            <div class="row" ng-if="model.dashboard.news_media.length > 0">
+                <div ng-if="model.showMedia">
+                    <div class="thumbnail col-xs-12 col-md-4 nh-thumbnail-height" ng-repeat="source in model.user_news_media">
+                        <div class="nh-toolbar-2">
+                            <a class="btn btn-default"
+                               ng-click="model.selectNewsMedia(source.id,source.sortBysAvailable[0])"
+                               type="button">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                        </div>
+                        <div class="caption">
+                            <div>
+                                <h3>{{source.name}}</h3>
+                            </div>
+                            <div>
+                                <p>{{source.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+
+
+                <!--<div class="col-xs-12">-->
+                    <!--<ul class="nav nav-tabs">-->
+                        <!--<li ng-repeat="source in model.user_news_media"-->
+                            <!--class="{{source.class}}"-->
+                            <!--role="presentation">-->
+
+                            <!--<a ng-click="model.selectNewsMedia(source.id,source.sortBysAvailable[0])">{{source.name}}</a>-->
+                        <!--</li>-->
+
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div ng-include="'views/article/templates/article.view.client.html'"></div>-->
+                <div ng-if="!model.showMedia">
+                    <div class="col-sm-12"><h3>{{model.selectedNewsMedia.name}}</h3></div>
+                    <div class="col-sm-12" ng-repeat="article in model.articles">
+
+                        <div class="thumbnail nh-padding-10px">
+                            <div class="row">
+                                <div class="col-sm-6"><img class="nh-responsive-img" ng-src="{{article.urlToImage}}" alt=""></div>
+                                <div class="col-sm-6">
+                                    <h2>
+                                        <a ng-click="model.selectArticle(article)">
+                                            {{article.title}}
+                                        </a>
+
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
-</div>
 </div>

@@ -11,16 +11,23 @@
         model.news_media = [];
         model.user_news_media = [];
         model.selectedNewsMedia = {};
+        model.showMedia = true;
 
         model.fetchArticlesByNewsMediaId = fetchArticlesByNewsMediaId;
         model.selectNewsMedia = selectNewsMedia;
         model.selectArticle = selectArticle;
+        model.viewAllNewsMedia = viewAllNewsMedia;
+
+        function viewAllNewsMedia() {
+            model.showMedia = true;
+        }
 
         function selectNewsMedia(newsMediaId,sortBy) {
-
+            model.showMedia = false;
             for (v in model.user_news_media){
                 if (model.user_news_media[v].id === newsMediaId){
                     model.user_news_media[v].class ="active";
+                    model.selectedNewsMedia = model.user_news_media[v];
                 }
                 else{
                     model.user_news_media[v].class = "";

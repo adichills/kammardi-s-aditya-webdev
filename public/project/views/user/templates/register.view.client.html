@@ -15,6 +15,15 @@
            ng-model="password2"
            class="form-control"
            placeholder="verify password"/>
+    <label for="role">Register as</label>
+    <select id="role"
+            ng-model="model.selectedRole"
+            class="form-control">
+
+        <option value="ADMIN">Admin</option>
+        <option value="NORMAL">Normal</option>
+        <option value="PUBLISHER">Publisher</option>
+    </select>
     <a class="btn btn-primary btn-block"
        ng-click="model.register(username,password,password2)">Register</a>
     <a class="btn btn-danger  btn-block"

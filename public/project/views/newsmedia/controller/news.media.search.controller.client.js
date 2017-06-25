@@ -32,19 +32,30 @@
                 })
         }
         init();
+
+        function isInArray(value, array) {
+            return array.indexOf(value) > -1;
+        }
         
         function addNewsMediaToDashboard(news_mediaId) {
             if (model.dashboard.news_media){
-                model.dashboard.news_media.push(news_mediaId);
+                if(!isInArray(news_mediaId,model.dashboard.news_media)){
+                    model.dashboard.news_media.push(news_mediaId);
+                }
+                else{
+                    model.message = "News media already present"
+                    return
+                }
+
 
             }
             else{
-
+                model.message="Login to add News media to your dashboard"
             }
 
             nh_dashBoardService.updateDashboard(model.dashboard._id,model.dashboard)
                 .then(function () {
-                    return;
+                    model.message="Media added to dashboard"
                 })
         }
 

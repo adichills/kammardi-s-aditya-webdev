@@ -22,22 +22,22 @@
             findUsersByIds:findUsersByIds,
             findAllFollowingForUser : findAllFollowingForUser,
             findAllFollowersForUser:findAllFollowersForUser,
-            removeUserFromFollowers:removeUserFromFollowers,
-            removeUserFromFollowing:removeUserFromFollowing,
+            addremoveUserFromFollowers:addremoveUserFromFollowers,
+            addremoveUserFromFollowing:addremoveUserFromFollowing,
             changePassword:changePassword
 
         };
         return api;
 
-        function removeUserFromFollowers(userId,followerId){
-            var url = "/api/nh/user/followers/"+ userId +"/"+followerId;
+        function addremoveUserFromFollowers(userId,followerId,mode){
+            var url = "/api/nh/user/followers/"+ userId +"/"+followerId +"/" +mode;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;
                 })
         }
-        function removeUserFromFollowing(userId,followingId){
-            var url = "/api/nh/user/following/"+ userId +"/"+followingId;
+        function addremoveUserFromFollowing(userId,followingId,mode){
+            var url = "/api/nh/user/following/"+ userId +"/"+followingId + "/" + mode;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;
@@ -94,11 +94,12 @@
 
 
 
-        function login(username, password) {
+        function login(username, password,role) {
             var url = "/api/nh/login";
             var credentials = {
                 username: username,
-                password: password
+                password: password,
+                role:role
             };
             return $http.post(url, credentials)
                 .then(function (response) {

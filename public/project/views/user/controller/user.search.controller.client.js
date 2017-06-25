@@ -15,8 +15,11 @@
         model.searchUser = searchUser;
         model.follow = follow;
         model.unfollow = unfollow;
+        model.userDetail = userDetail;
 
-        //model.user = nh_userService.findUserByUserId(model.userId);
+        function userDetail(username) {
+            $location.url("/profile/view/" + username);
+        }
 
 
         function searchUser(username) {
@@ -103,15 +106,6 @@
 
         }
 
-        // function unfollow(tobeUnFollowedUser) {
-        //     nh_userService.removeUserFromFollowers(tobeUnFollowedUser._id,model.userId)
-        //         .then(function () {
-        //             nh_userService.removeUserFromFollowing(model.userId,tobeUnFollowedUser._id)
-        //                 .then(function () {
-        //                     searchUser(model.searchText);
-        //                 })
-        //         })
-        // }
 
         function renderUser (user) {
             model.user = user;

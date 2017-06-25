@@ -10,8 +10,8 @@ nh_articleModel.fetchArticlesByUserId = fetchArticlesByUserId;
 nh_articleModel.fetchArticleById = fetchArticleById;
 nh_articleModel.fetchArticlesCountByUserId = fetchArticlesCountByUserId;
 nh_articleModel.updatePublishedArticle = updatePublishedArticle;
-nh_articleModel.deletePublishedArticle = deletePublishedArticle;
-ah_articleModel.fetchReportedArticles = fetchReportedArticles;
+nh_articleModel.deleteArticle = deleteArticle;
+nh_articleModel.fetchReportedArticles = fetchReportedArticles;
 
 
 module.exports = nh_articleModel;
@@ -23,11 +23,20 @@ function fetchReportedArticles() {
 function saveArticle(article) {
    return nh_articleModel.create(article)
        .then(function (article) {
+           if(article.articleType ==='NEWS'){
+               nh_userModel.addSavedArticleToUser(article._user,article._id);
+               return article;
+           }
+           else{
+               nh_userModel.addAuthoredArticlesToUser(article._user,article._id);
+               return article;
+           }
            //console.log(article._id);
-           nh_userModel.addSavedArticleToUser(article._user,article._id);
-           return article;
+
+
        });
 }
+
 
 function fetchArticlesByUserId(userId,type) {
     return nh_articleModel.find({_user:userId,articleType:type});
@@ -38,9 +47,9 @@ function fetchArticleById(articleId) {
 }
 
 function updatePublishedArticle(articleId,article) {
-    return nh_articleModel.update({_id:articleId,$set:article});
+    return nh_articleModel.update({_id:articleId},{$set:article});
 }
-function deletePublishedArticle(articleId) {
+function deleteArticle(articleId) {
     return nh_articleModel.remove({_id:articleId});
 }
 
