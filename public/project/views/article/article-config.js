@@ -45,6 +45,15 @@
                 }
 
             })
+            .when('/newsMedia/article/:newsMediaId/:sortBy/:name',{
+                templateUrl:'views/article/templates/article.view.client.html',
+                controller:'nh_newsMediaArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkCurrentUser
+                }
+
+            })
             .when('/publisher/article/:username',{
                 templateUrl:'views/article/templates/article.view.client.html',
                 controller:'nh_publishedArticleController',

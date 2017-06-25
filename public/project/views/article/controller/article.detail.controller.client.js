@@ -38,14 +38,21 @@
         init();
 
         function saveArticle(article) {
-            article._user = model.userId;
-            article.articleType = "NEWS";
-            nh_articleService.saveArticle(article)
-                .then(function (article) {
-                    model.message = "Article Saved";
-                    model.articleSaved = true;
-                    model.articleId = article._id;
-                })
+            if(model.userId){
+                article._user = model.userId;
+                article.articleType = "NEWS";
+                nh_articleService.saveArticle(article)
+                    .then(function (article) {
+                        model.message = "Article Saved";
+                        model.articleSaved = true;
+                        model.articleId = article._id;
+                    })
+            }
+            else{
+                model.message = "Login to save this article";
+                return;
+            }
+
         }
 
         function removeComment(commentId,userId) {

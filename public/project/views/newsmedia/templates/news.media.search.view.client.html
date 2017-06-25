@@ -18,9 +18,10 @@
             <div class="panel-heading">
                 {{media.name}}
                 <div class="pull-right">
-                    <a class="glyphicon glyphicon-globe"></a>
-                    <a class="glyphicon glyphicon-plus" ng-click="model.addNewsMediaToDashboard(media.id)"></a>
-                    <a class="glyphicon glyphicon-eye-open"></a>
+                    <a class="glyphicon glyphicon-globe" href="{{media.url}}" target="_blank"></a>
+                    <a ng-if="model.showAddtoDashboard" class="glyphicon glyphicon-plus" ng-click="model.addNewsMediaToDashboard(media.id)"></a>
+                    <a class="glyphicon glyphicon-eye-open"
+                    href="#!/newsMedia/article/{{media.id}}/{{media.sortBysAvailable[0]}}/{{media.name}}"></a>
                 </div>
 
 

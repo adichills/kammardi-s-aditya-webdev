@@ -2,7 +2,8 @@
     angular
         .module("NH")
         .controller("nh_savedArticleController",nh_savedArticleController)
-        .controller("nh_publishedArticleController",nh_publishedArticleController);
+        .controller("nh_publishedArticleController",nh_publishedArticleController)
+        .controller("nh_newsMediaArticleController",nh_newsMediaArticleController);
 
     function nh_savedArticleController(currentUser,$location,$routeParams,nh_articleService,nh_userService) {
 
@@ -103,5 +104,32 @@
 
 
 
+    }
+
+    function nh_newsMediaArticleController(currentUser,$location,$routeParams,nh_newsMediaService,nh_userService) {
+
+        var model = this;
+        model.newsMediaId = $routeParams['newsMediaId'];
+        model.sortBy = $routeParams['sortBy'];
+        model.mode = $routeParams['name'];
+
+        model.selectArticle =  selectArticle;
+
+        function init() {
+            fetchArticlesByNewsMediaId(model.newsMediaId,model.sortBy);
+        }
+        init();
+
+        function fetchArticlesByNewsMediaId(newsMediaId,sortBy) {
+            nh_newsMediaService.fetchArticlesByNewsMediaId(newsMediaId,sortBy)
+                .then(function (articlesObject) {
+                    model.articles = articlesObject.articles;
+                })
+        }
+
+        function selectArticle(article) {
+            nh_newsMediaService.setSelectedArticle(article);
+            $location.url('/article/selectedArticle');
+        }
     }
 })()

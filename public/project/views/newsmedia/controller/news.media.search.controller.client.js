@@ -8,11 +8,13 @@
         model.newsMedia = [];
         model.searchResults =[];
         model.searchForNewsMedia = searchForNewsMedia;
-        model.dashboard = {}
+        model.showAddtoDashboard = false;
+        model.dashboard = {};
         
         model.addNewsMediaToDashboard = addNewsMediaToDashboard;
         if(currentUser._id){
             model.userId = currentUser._id;
+            model.showAddtoDashboard = true;
             getDashboard();
         }
 

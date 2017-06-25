@@ -19,7 +19,7 @@ nh_userModel.findFollowersForUser = findFollowersForUser;
 nh_userModel.findFollowingForUser = findFollowingForUser;
 nh_userModel.addremoveUserFromFollowing= addremoveUserFromFollowing;
 nh_userModel.addremoveUserFromFollowers = addremoveUserFromFollowers;
-
+nh_userModel.findUserByFacebookId = findUserByFacebookId;
 nh_userModel.addSavedArticleToUser = addSavedArticleToUser;
 nh_userModel.addAuthoredArticlesToUser = addAuthoredArticlesToUser;
 nh_userModel.removeSavedArticlesFromUser = removeSavedArticlesFromUser;
@@ -28,6 +28,11 @@ nh_userModel.removeCommentsFromUser = removeCommentsFromUser;
 nh_userModel.changePassword = changePassword;
 
 module.exports = nh_userModel;
+
+
+function findUserByFacebookId(facebookId) {
+    return nh_userModel.findOne({'facebook.id': facebookId});
+}
 
 function addremoveUserFromFollowing(userId,followingId,mode) {
     if (mode === 'add'){
