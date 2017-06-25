@@ -56,7 +56,7 @@ app.put('/api/nh/changePassword/:userId',changePassword);
 app.get ('/auth/nh/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/auth/facebook/nh/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/project/index.html#!/profile',
+        successRedirect: '/project/index.html#!/profile/profile',
         failureRedirect: '/project/index.html#!/login'
     }));
 

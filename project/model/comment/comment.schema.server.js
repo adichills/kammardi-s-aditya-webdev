@@ -4,7 +4,7 @@ var nh_commentSchema = mongoose.Schema({
     _user:{type: mongoose.Schema.Types.ObjectId,ref:'NH_UserModel'},
     _article:{type:mongoose.Schema.Types.ObjectId,ref:'NH_ArticleModel'},
     text:String,
-    reported:Boolean,
+    reported:{type:Boolean,default:false},
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "NH_Comment"});
 

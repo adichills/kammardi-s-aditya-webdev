@@ -6,7 +6,9 @@
     function nh_commentService($http) {
         var api = {
             fetchCommentsForArticle:fetchCommentsForArticle,
-            addComment : addComment
+            addComment : addComment,
+            removeComment:removeComment,
+            updateComment:updateComment
         }
         return api;
 
@@ -16,8 +18,19 @@
                 .then(sendResponseData)
         }
 
+        function removeComment(commentId,userId) {
+            var url= "/api/nh/comment/"+commentId + "/" + userId;
+            return $http.delete(url)
+                .then(sendResponseData);
+        }
+
         function sendResponseData(response) {
             return response.data;
+        }
+        function updateComment(commentId,comment) {
+            var url = "/api/nh/comment/"+commentId;
+            return $http.put(url,comment)
+                .then(sendResponseData);
         }
 
         function addComment(comment) {

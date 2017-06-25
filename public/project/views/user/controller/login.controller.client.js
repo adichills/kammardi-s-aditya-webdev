@@ -15,10 +15,10 @@
 
         function login(username, password) {
 
-            if (model.selectedRole===""){
-                model.message ="Please select a role";
-                return;
-            }
+            // if (model.selectedRole===""){
+            //     model.message ="Please select a role";
+            //     return;
+            // }
 
             if(username === null || username === '' || typeof username === 'undefined'){
                 model.message = "username field cannot be empty";
@@ -38,7 +38,7 @@
 
         function userFound(found){
 
-            if (found.role === model.selectedRole){
+
                 $window.location.reload();
 
                 if(found.role ==="ADMIN"){
@@ -51,10 +51,8 @@
                     $location.url('/publisher/article')
                 }
 
-            }
-            else{
-                model.message ="selected role does not match";
-            }
+
+
 
 
         }

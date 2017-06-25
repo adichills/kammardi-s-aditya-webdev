@@ -3,7 +3,7 @@
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="nh-toolbar-1">
-                    <a class="btn btn-info">Read</a>
+                    <a ng-if="model.article.url" href="{{model.article.url}}" target="_blank" class="btn btn-info">Read</a>
                     <a ng-if="!model.articleSaved" class="btn btn-success" ng-click="model.saveArticle(model.article)">
                         Save
                     </a>
@@ -43,6 +43,18 @@
                         </div>
                         <ul ng-show="model.comments" class="list-group">
                             <li ng-repeat="comment in model.comments" class="list-group-item">
+                                <div class="nh-toolbar-2">
+                                    <a ng-if="model.userId !== comment._user._id" class ="btn btn-default"
+                                       ng-click = "model.reportComment(comment._id,comment)"
+                                       type="button">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                    </a>
+                                    <a ng-if="model.userId === comment._user._id" class ="btn btn-default"
+                                       ng-click = "model.removeComment(comment._id,comment._user._id)"
+                                       type="button">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </div>
                                 <h5>{{comment._user.username}}</h5>
                                 <p>{{comment.text}}</p>
                             </li>

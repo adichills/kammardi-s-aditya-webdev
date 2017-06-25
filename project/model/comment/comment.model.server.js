@@ -7,6 +7,8 @@ var nh_commentModel = mongoose.model('NH_CommentModel', nh_commentSchema);
 
 nh_commentModel.addComment = addComment;
 nh_commentModel.fetchCommentsForArticle = fetchCommentsForArticle;
+nh_commentModel.removeComment = removeComment;
+nh_commentModel.updateComment = updateComment;
 
 module.exports = nh_commentModel;
 
@@ -16,6 +18,18 @@ function addComment(comment) {
             nh_userModel.addCommentsToUser(comment._user,comment._id);
                 return comment;
         });
+}
+
+function removeComment(commentId,userId) {
+    return nh_commentModel.remove({_id:commentId})
+        .then(function (msg) {
+            nh_userModel.removeCommentsFromUser(userId,commentId);
+            return msg;
+        })
+}
+
+function updateComment(commentId,comment) {
+    return nh_commentModel.update({_id:commentId},{$set:comment});
 }
 
 function fetchCommentsForArticle(articleId) {

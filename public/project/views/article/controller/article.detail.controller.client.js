@@ -14,6 +14,8 @@
         model.saveArticle = saveArticle;
         model.articleSaved = false;
         model.addComment = addComment;
+        model.removeComment = removeComment;
+        model.reportComment = reportComment;
 
         function init(){
             if(model.articleId ==='selectedArticle'){
@@ -39,9 +41,34 @@
             article._user = model.userId;
             article.articleType = "NEWS";
             nh_articleService.saveArticle(article)
-                .then(function () {
+                .then(function (article) {
                     model.message = "Article Saved";
                     model.articleSaved = true;
+                    model.articleId = article._id;
+                })
+        }
+
+        function removeComment(commentId,userId) {
+            nh_commentService.removeComment(commentId,userId)
+                .then(function () {
+                    fetchCommentsForArticle(model.articleId)
+                        .then(function () {
+
+                        },function (err) {
+                            console.log(err);
+                        })
+                })
+        }
+        function reportComment(commentId,comment) {
+            comment.reported = true;
+            nh_commentService.updateComment(commentId,comment)
+                .then(function (comment) {
+                    fetchCommentsForArticle(model.articleId)
+                        .then(function () {
+
+                        },function (err) {
+                            console.log(err);
+                        })
                 })
         }
 
