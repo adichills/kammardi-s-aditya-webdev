@@ -1,79 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <link href="assignment/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="assignment/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="assignment/css/style.css" rel="stylesheet"/>
-    <title>Web Dev Course Home Page</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Aditya Kammardi Sathyanarayan</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="home_page_related/css/creative.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
+<body id="page-top">
 
-            <a class="navbar-brand">
-                Aditya Kammardi Sathyanarayan
-            </a>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Hey !!!</a>
+            </div>
 
-
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <!--<li>-->
+                        <!--<a class="page-scroll" href="#portfolio">Portfolio</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    </div>
-</nav>
+        <!-- /.container-fluid -->
+    </nav>
 
-<div class="container-fluid">
-    <h1>Web Dev Course Home Page (Summer 1 2017, May 08 2017 - Jun 25 2017 )</h1>
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">Aditya Kammardi Sathyanarayan</h1>
+                <hr>
+                <p>Welcome to my Personal Website</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+            </div>
+        </div>
+    </header>
 
-    <p>
-        I am Aditya Kammardi Sathyanarayan !!!  I am currently pursuing Masters in Computer Science from Northeastern University
-    </p>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Little bit about me</h2>
+                    <hr class="light">
+                    <p class="text-faded">Computer Science Graduate Student at Northeastern Univesity</p>
+                    <p class="text-faded">I have about three years of software development experience, projects include a Datawarehouse implementation for Columbia University and an Enterprise application for DMV's in the United States.</p>
+                    <p class="text-faded">Comfortable coding in Java and Python</p>
+                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>Little bit about me</h2>
-    <ul>
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Projects</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="https://kammardi-s-aditya-news-hub.herokuapp.com/project/index.html#!/">
+                            <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        </a>
+
+                        <h3>News Hub</h3>
+                        <p class="text-muted">Web application built on M.E.A.N stack ,where you can read news articles from 60 news sources</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="https://kammardi-s-aditya-webdev.herokuapp.com/assignment/index.html#!/">
+                            <i class="fa fa-4x fa-file-word-o text-primary sr-icons"></i>
+                        </a>
+
+                        <h3>Web App Maker</h3>
+                        <p class="text-muted">A web application built on M.E.A.N stack ,where you can build your own websitw which allows adding some cool widgets to the website pages</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="https://github.com/adichills/Northeastern_Projects/tree/master/SecureInstantMessaging" target="_blank">
+                            <i class="fa fa-4x fa-user-secret text-primary sr-icons"></i>
+                        </a>
+
+                        <h3>Secure Chat</h3>
+                        <p class="text-muted">A secure chat application with a CLI interface, built in python,which enables secure communication between two peers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="https://github.com/adichills/InformationRetrieval_Project" target="_blank">
+                            <i class="fa fa-4x fa-search text-primary sr-icons"></i>
+                        </a>
+
+                        <h3>Information Retrieval</h3>
+                        <p class="text-muted">An evaluation of TF-IDF,BM25 and Lucene retrival algorithms in a search engine</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <div class="service-box">
+                        <a href="https://github.com/adichills" target="_blank">
+                            <i class="fa fa-4x fa-github text-primary sr-icons"></i>
+                        </a>
+                        <h3>Git Hub Repo</h3>
+                        <p class="text-muted">Check out my Github Repository</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-        <li>
 
-            <h3>Course Work at Northeastern University</h3>
-            <p>
-            <ul><li>Network Secuirity - Implemented a secure instant messeaging application in python which enabled server to client and client to client communication via CLI</li>
-                <li>Information Retrieval - Developed a search engine based on BM25 ranking model and enhanced the performance of the search engine using pseudo relevance method of query expansion.
-                </li>Web Development - Currently taking this course and will learn web development in M.E.A.N stack (Mongo,Express,Angular and Node) by the end of the course</li></ul>
-            </p>
-        </li>
+    <!--<aside class="bg-dark">-->
+        <!--<div class="container text-center">-->
+            <!--<div class="call-to-action">-->
+                <!--<h2>Free Download at Start Bootstrap!</h2>-->
+                <!--<a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</aside>-->
 
-        <li>
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <hr class="primary">
 
-                <h3>Previous Work Experience</h3>
-                <p>
-                    <ul><li>Datawarehouse Implementation for Teachers College at Columbia University New York (Sept 2015 - Jun 2016)</li>
-                        <li>A Licensing Application Product  for various DMV's across United States (July 2013 - Aug 2015)</li></ul>
-                </p>
-        </li>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p>617-407-1946</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a>kammardisathyanara.@husky.neu.edu</a></p>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <i class="fa fa-linkedin fa-3x sr-contact"></i>
+                    <p><a href="https://www.linkedin.com/in/aditya-kammardi-sathyanarayan/">LinkedIn</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
 
-    </ul>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/adichills/kammardi-s-aditya-webdev">My GitHub Repo !!!</a>
-        </li>
-    </ul>
-        <footer><p>P.S This website will be revamped in the next few weeks !!! :)</p></footer>
-    </div>
+    <!-- Theme JavaScript -->
+    <script src="home_page_related/js/creative.min.js"></script>
 
 </body>
 
