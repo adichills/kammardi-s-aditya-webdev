@@ -151,8 +151,7 @@
                 .then(function (articles) {
                     model.articles = articles;
                 },function (msg) {
-                    console.log(msg);
-                    return;
+                    model.message = "Error while fetching articles";
                 })
         }
         init();
