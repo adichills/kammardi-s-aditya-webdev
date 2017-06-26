@@ -10,7 +10,8 @@ function getAdminStats(req,res) {
     var stats = {}
     getUserStats(stats)
         .then(getCommentStats)
-        .then(getArticleStats)
+        .then(getSavedArticleStats)
+        .then(getPublishedArticleStats)
         .then(getReportedCommentsStats)
         .then(getReportedArticleStats)
         .then(function (stats) {
@@ -42,10 +43,17 @@ function getReportedCommentsStats(stats) {
             return stats;
         })
 }
-function getArticleStats(stats) {
-    return nh_articleModel.find()
+function getSavedArticleStats(stats) {
+    return nh_articleModel.find({articleType:'NEWS'})
         .then(function (articles) {
-            stats.articlesCount = articles.length;
+            stats.savedarticlesCount = articles.length;
+            return stats;
+        });
+}
+function getPublishedArticleStats(stats) {
+    return nh_articleModel.find({articleType:'PUBLISHER'})
+        .then(function (articles) {
+            stats.publishedarticlesCount = articles.length;
             return stats;
         });
 }

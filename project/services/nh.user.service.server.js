@@ -148,7 +148,7 @@ function addremoveUserFromFollowing(req,res) {
     var followingId = req.params['followingId'];
     var mode = req.params['mode'];
 
-    nh_userModel.addremoveUserFromFollowing(userId,followingId)
+    nh_userModel.addremoveUserFromFollowing(userId,followingId,mode)
         .then(function (user) {
            res.json(user);
         },function (error) {
