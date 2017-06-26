@@ -100,7 +100,7 @@ function googleStrategy(token, refreshToken, profile, done) {
                             token: token
                         }
                     };
-                    return userModel.createUser(newGoogleUser);
+                    return nh_userModel.createUser(newGoogleUser);
                 }
             },
             function(err) {
