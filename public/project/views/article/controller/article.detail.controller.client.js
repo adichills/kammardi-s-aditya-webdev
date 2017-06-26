@@ -26,8 +26,19 @@
 
 
         function init(){
+
+            if (model.articleId !=='selectedArticle'){
+                if(model.userId === null || typeof model.userId === 'undefined'){
+                    $location.url('/');
+                }
+            }
+
             if(model.articleId ==='selectedArticle'){
                model.article =  nh_newsMediaService.getSelectedArticle();
+               if (typeof model.article ==='undefined' || model.article === null){
+                   //redirect to newshub home
+                   $location.url("/");
+               }
             }
             else{
                 return nh_articleService.fetchArticleById(model.articleId)

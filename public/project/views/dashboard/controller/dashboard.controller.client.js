@@ -17,9 +17,19 @@
         model.selectNewsMedia = selectNewsMedia;
         model.selectArticle = selectArticle;
         model.viewAllNewsMedia = viewAllNewsMedia;
+        model.removeNewsMedia = removeNewsMedia;
 
         function viewAllNewsMedia() {
             model.showMedia = true;
+        }
+
+        function removeNewsMedia(newsMediaId) {
+            var index = model.dashboard.news_media.indexOf(newsMediaId);
+            model.dashboard.news_media.splice(index,1);
+            nh_dashBoardService.updateDashboard(model.dashboard._id,model.dashboard)
+                .then(function (dashboard) {
+                    console.log(dashboard);
+                })
         }
 
         function selectNewsMedia(newsMediaId,sortBy) {

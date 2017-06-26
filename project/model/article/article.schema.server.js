@@ -5,7 +5,7 @@ var nh_articleSchema = mongoose.Schema({
     url:String,
     title:String,
     description:String,
-    publishedAt:Date,
+    publishedAt:{type:Date,default:Date.now},
     urlToImage:String,
     author:String,
     articleType:{type:String,enum:['NEWS','PUBLISHER']},

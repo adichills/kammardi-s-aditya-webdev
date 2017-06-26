@@ -18,6 +18,13 @@
                   placeholder="Small description"
                   rows="5"
                   class="form-control"></textarea>
+
+        <label for="articleUrl">Article Url</label>
+        <input id="articleUrl"
+               placeholder="Article Url"
+               ng-model="model.article.url"
+               class="form-control"/>
+
         <div class="panel panel-info">
             <div class="panel-heading">Article Image</div>
             <div class="panel-body">
@@ -26,7 +33,7 @@
                     Search
                 </a>
 
-                <label for="url">URL</label>
+                <label for="url">Image Url</label>
                 <input id="url"
                        ng-model="model.article.urlToImage"
                        placeholder="www.northeastern.edu"
