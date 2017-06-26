@@ -18,7 +18,14 @@
         <div class="row">
             <div class="col-sm-12" ng-repeat="article in model.articles">
 
-                <div class="thumbnail nh-padding-10px">
+                <div class="thumbnail">
+                    <div ng-if="model.showDeleteArticle" class="nh-toolbar-1">
+                        <a class ="btn btn-default"
+                           ng-click = "model.deleteArticle(article._id,article._user,article.articleType)"
+                           type="button">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
                     <div class="row">
                         <div class="col-sm-6"><img class="nh-responsive-img" ng-src="{{article.urlToImage}}" alt=""></div>
                         <div class="col-sm-6">

@@ -26,6 +26,7 @@ nh_userModel.removeSavedArticlesFromUser = removeSavedArticlesFromUser;
 nh_userModel.addCommentsToUser = addCommentsToUser;
 nh_userModel.removeCommentsFromUser = removeCommentsFromUser;
 nh_userModel.changePassword = changePassword;
+nh_userModel.removeAuthoredArticlesFromUser = removeAuthoredArticlesFromUser;
 
 module.exports = nh_userModel;
 
@@ -69,6 +70,14 @@ function addAuthoredArticlesToUser(userId,articleId) {
     return nh_userModel.findById(userId)
         .then(function (user) {
             user.authoredArticles.push(articleId);
+            return user.save();
+        })
+}
+function removeAuthoredArticlesFromUser(userId,articleId) {
+    return nh_userModel.findById(userId)
+        .then(function (user) {
+            var index = user.authoredArticles.indexOf(articleId);
+            user.authoredArticles.splice(index,1);
             return user.save();
         })
 }

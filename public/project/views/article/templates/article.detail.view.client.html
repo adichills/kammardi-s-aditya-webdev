@@ -7,6 +7,14 @@
                     <a ng-if="!model.articleSaved" class="btn btn-success" ng-click="model.saveArticle(model.article)">
                         Save
                     </a>
+                    <a ng-if="model.showReportArticle" class="btn btn-info"
+                       ng-click="model.reportArticle(model.article._id,model.article)">
+                        Report
+                    </a>
+                    <a ng-if="model.showDeleteArticle" class="btn btn-danger"
+                       ng-click="model.deleteArticle(model.article._id,model.article._user,model.article.articleType)">
+                        Delete
+                    </a>
                 </div>
                 <div class="panel-heading">
                   <div class="row">

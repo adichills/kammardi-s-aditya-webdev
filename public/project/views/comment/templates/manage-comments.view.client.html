@@ -1,0 +1,22 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading nh-panel-header-font">
+            Reported Comments
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li ng-repeat="comment in model.comments" class="list-group-item">
+                    <div class="nh-toolbar-2">
+                        <a class ="btn btn-default"
+                           ng-click = "model.removeComment(comment._id,comment._user._id)"
+                           type="button">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                    <h5>{{comment._user.username}}</h5>
+                    <p>{{comment.text}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

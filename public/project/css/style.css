@@ -4,6 +4,10 @@ select,
 form{
     margin-bottom: 5px;
 }
+.nh-bottom-5px{
+    margin-bottom: 5px;
+}
+
 .input-group{
     margin-bottom: 5px;
 }
@@ -20,10 +24,39 @@ body{
     padding-top: 60px;
     padding-bottom: 60px;
     /*background-image: url("../../images/newspaper-154444_1280.png");*/
+
+    position: relative;
+    width: 100%;
+    /*min-height: auto;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    background-image: url('../../images/NewsBg3.jpg');
 }
 .nh-strechWidth{
     width: 100%;
 }
+
+.backGround{
+    position: relative;
+    width: 100%;
+    /*min-height: auto;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    /*background-image: url('../../images/NewsBg.jpg');*/
+    text-align: center;
+    color: black;
+    height: 400px;
+    font-size: 30px;
+    font-weight: 700;
+
+}
+
 .navbar-default > div {
     background-color: #222222;
     border-color: #080808;

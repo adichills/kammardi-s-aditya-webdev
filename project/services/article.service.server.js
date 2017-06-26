@@ -8,8 +8,11 @@ var upload = multer({ dest: __dirname+'/../../public/project/uploads' });
 app.post("/api/nh/article",saveArticle);
 app.get("/api/nh/article/:userId/:type",fetchArticlesByUserId);
 app.get("/api/nh/savedArticle/:articleId",fetchArticleById);
+
 app.put("/api/nh/publishedArticle/:articleId",updatePublishedArticle);
-app.delete("/api/nh/publishedArticle/:articleId",deletePublishedArticle);
+app.get("/api/nh/admin/fetchReportedArticles",fetchReportedArticles);
+
+app.delete("/api/nh/article/:articleId/:userId/:articleType",deleteArticle);
 app.post ("/api/nh/upload", upload.single('myFile'), uploadImage);
 app.put('/api/nh/flickr/:articleId',updateArticleForFlickr);
 
@@ -61,6 +64,15 @@ function uploadImage(req, res) {
 
 }
 
+function fetchReportedArticles(req,res) {
+    nh_articleModel.fetchReportedArticles()
+        .then(function (articles) {
+            res.json(articles)
+        },function (err) {
+            res.json(err);
+        })
+}
+
 
 function saveArticle(req,res) {
     var article = req.body;
@@ -83,9 +95,11 @@ function updatePublishedArticle(req,res) {
         })
 }
 
-function deletePublishedArticle(req,res) {
+function deleteArticle(req,res) {
     var articleId = req.params['articleId'];
-    nh_articleModel.deletePublishedArticle(articleId)
+    var userId = req.params['userId'];
+    var articleType = req.params['articleType']
+    nh_articleModel.deleteArticle(articleId,userId,articleType)
         .then(function () {
             res.sendStatus(200);
         },function (err) {

@@ -9,7 +9,7 @@ var nh_articleSchema = mongoose.Schema({
     urlToImage:String,
     author:String,
     articleType:{type:String,enum:['NEWS','PUBLISHER']},
-    reported:Boolean,
+    reported:{type:Boolean,default:false},
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "NH_Article"});
 

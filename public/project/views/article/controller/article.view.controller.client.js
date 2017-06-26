@@ -3,7 +3,8 @@
         .module("NH")
         .controller("nh_savedArticleController",nh_savedArticleController)
         .controller("nh_publishedArticleController",nh_publishedArticleController)
-        .controller("nh_newsMediaArticleController",nh_newsMediaArticleController);
+        .controller("nh_newsMediaArticleController",nh_newsMediaArticleController)
+        .controller("nh_adminArticleController",nh_adminArticleController);
 
     function nh_savedArticleController(currentUser,$location,$routeParams,nh_articleService,nh_userService) {
 
@@ -57,6 +58,8 @@
         model.username = $routeParams['username'];
         model.selectArticle = selectArticle;
         model.createArticle = createArticle;
+
+
         model.showCreateArticle = true;
 
         function init1() {
@@ -64,6 +67,9 @@
                 return nh_userService.findUserByUsername(model.username)
                     .then(function (user) {
                         model.userId = user._id;
+                        if(model.username !== currentUser.username){
+                            model.showCreateArticle = false;
+                        }
                     })
             }
         }
@@ -131,5 +137,36 @@
             nh_newsMediaService.setSelectedArticle(article);
             $location.url('/article/selectedArticle');
         }
+    }
+
+    function nh_adminArticleController(currentUser,$location,$routeParams,nh_articleService) {
+
+        var model = this;
+        model.showDeleteArticle = true;
+        model.deleteArticle = deleteArticle;
+        model.mode = "Reported"
+
+        function init() {
+            nh_articleService.fetchReportedArticles()
+                .then(function (articles) {
+                    model.articles = articles;
+                },function (msg) {
+                    console.log(msg);
+                    return;
+                })
+        }
+        init();
+
+        function deleteArticle(articleId,userId,articleType) {
+            nh_articleService.deleteArticle(articleId,userId,articleType)
+                .then(function (msg) {
+                    init();
+                },function (msg) {
+                    console.log(msg);
+                    return;
+                })
+        }
+
+
     }
 })()

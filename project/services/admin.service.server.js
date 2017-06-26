@@ -11,6 +11,8 @@ function getAdminStats(req,res) {
     getUserStats(stats)
         .then(getCommentStats)
         .then(getArticleStats)
+        .then(getReportedCommentsStats)
+        .then(getReportedArticleStats)
         .then(function (stats) {
             res.json(stats);
         })
@@ -32,10 +34,26 @@ function getCommentStats(stats) {
             return stats;
         });
 }
+
+function getReportedCommentsStats(stats) {
+    return nh_commentModel.fetchReportedComments()
+        .then(function (comments) {
+            stats.reportedComments = comments.length;
+            return stats;
+        })
+}
 function getArticleStats(stats) {
     return nh_articleModel.find()
         .then(function (articles) {
             stats.articlesCount = articles.length;
+            return stats;
+        });
+}
+
+function getReportedArticleStats(stats) {
+    return nh_articleModel.fetchReportedArticles()
+        .then(function (articles) {
+            stats.reportedArticles = articles.length;
             return stats;
         });
 }

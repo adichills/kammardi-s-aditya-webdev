@@ -11,7 +11,9 @@
             fetchArticleById:fetchArticleById,
             updatePublishedArticle:updatePublishedArticle,
             deleteArticle:deleteArticle,
-            updateArticleForFlickr:updateArticleForFlickr
+            updateArticleForFlickr:updateArticleForFlickr,
+            fetchReportedArticles:fetchReportedArticles
+
         }
         return api;
 
@@ -38,8 +40,8 @@
             return $http.put(url,article)
                 .then(sendResponseData);
         }
-        function deleteArticle(articleId) {
-            var url = "/api/nh/publishedArticle/" + articleId;
+        function deleteArticle(articleId,userId,articleType) {
+            var url = "/api/nh/article/" + articleId +"/"+userId + "/" + articleType;
             return $http.delete(url)
                 .then(sendResponseData);
         }
@@ -49,9 +51,15 @@
             return $http.put(url,urlObject)
                 .then(sendResponseData);
         }
+        function fetchReportedArticles() {
+            var url = '/api/nh/admin/fetchReportedArticles';
+            return $http.get(url)
+                .then(sendResponseData);
+        }
 
         function sendResponseData(response) {
             return response.data;
         }
+
     }
 })()

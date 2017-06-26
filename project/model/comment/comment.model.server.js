@@ -9,6 +9,7 @@ nh_commentModel.addComment = addComment;
 nh_commentModel.fetchCommentsForArticle = fetchCommentsForArticle;
 nh_commentModel.removeComment = removeComment;
 nh_commentModel.updateComment = updateComment;
+nh_commentModel.fetchReportedComments = fetchReportedComments;
 
 module.exports = nh_commentModel;
 
@@ -34,6 +35,12 @@ function updateComment(commentId,comment) {
 
 function fetchCommentsForArticle(articleId) {
     return nh_commentModel.find({_article:articleId})
+        .populate('_user')
+        .exec();
+}
+
+function fetchReportedComments() {
+    return nh_commentModel.find({reported:true})
         .populate('_user')
         .exec();
 }

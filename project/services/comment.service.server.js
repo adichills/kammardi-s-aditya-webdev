@@ -9,12 +9,22 @@ app.get('/api/nh/comment/article/:articleId',fetchCommentsForArticle);
 app.post('/api/nh/comment',addComment);
 app.delete('/api/nh/comment/:commentId/:userId',removeComment);
 app.put('/api/nh/comment/:commentId',updateComment);
+app.get('/api/nh/admin/reportedComments',fetchReportedComments);
 
 function addComment(req,res) {
     var newCommentObject = req.body;
     nh_commentModel.addComment(newCommentObject)
         .then(function (comment) {
             res.json(comment);
+        },function (err) {
+            res.send(err);
+        })
+}
+
+function fetchReportedComments(req,res) {
+    nh_commentModel.fetchReportedComments()
+        .then(function (comments) {
+            res.json(comments);
         },function (err) {
             res.send(err);
         })

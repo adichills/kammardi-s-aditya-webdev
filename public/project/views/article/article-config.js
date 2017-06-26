@@ -82,12 +82,52 @@
                 }
 
             })
+            .when('/manageArticles',{
+                templateUrl:'views/article/templates/article.view.client.html',
+                controller: 'nh_adminArticleController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser:checkAdmin
+                }
+
+            })
 
 
 
 
 
 
+    }
+
+    function checkAdmin($q,$location,nh_userService) {
+        var deferred = $q.defer();
+
+        nh_userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    if(typeof user.role ==='undefined' || user.role === null || user.role.length ===0){
+                        deferred.reject();
+                        $location.url('/login');
+                    }
+                    else{
+                        var index = user.role.indexOf('ADMIN');
+                        if (index > -1){
+                            deferred.resolve(user);
+                        }
+                        else{
+                            deferred.reject();
+                            $location.url('/login');
+                        }
+                    }
+
+                }
+            });
+
+        return deferred.promise;
     }
 
     function checkCurrentUser($q, $location, nh_userService) {

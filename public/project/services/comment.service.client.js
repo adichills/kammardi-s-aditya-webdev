@@ -8,9 +8,16 @@
             fetchCommentsForArticle:fetchCommentsForArticle,
             addComment : addComment,
             removeComment:removeComment,
-            updateComment:updateComment
+            updateComment:updateComment,
+            fetchReportedComments:fetchReportedComments
         }
         return api;
+
+        function fetchReportedComments() {
+            var url = '/api/nh/admin/reportedComments';
+            return $http.get(url)
+                .then(sendResponseData);
+        }
 
         function fetchCommentsForArticle(articleId) {
             var url = '/api/nh/comment/article/'+articleId;

@@ -9,7 +9,17 @@
             </span>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="model.searchResults.length==0">
+        <div class="col-xs-12">
+            <div class="jumbotron backGround">
+                <h1>Welcome to News Hub</h1>
+                <h2 class="text-center">Choose to read the latest articles from over 60 news media from all over the world, courtesy News API</h2>
+
+            </div>
+
+        </div>
+    </div>
+    <div ng-if="model.searchResults.length>0" class="row">
         <div ng-show="model.message" class="alert alert-info">
             {{model.message}}
         </div>

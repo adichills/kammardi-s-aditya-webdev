@@ -10,12 +10,20 @@
         model.articleId = $routeParams['articleId'];
         model.article = {};
         model.comments = [];
+        model.articleSaved = false;
+        model.showReportArticle = false;
+        model.showDeleteArticle = false;
 
         model.saveArticle = saveArticle;
-        model.articleSaved = false;
+
         model.addComment = addComment;
         model.removeComment = removeComment;
         model.reportComment = reportComment;
+        model.deleteArticle = deleteArticle;
+        model.reportArticle = reportArticle;
+
+
+
 
         function init(){
             if(model.articleId ==='selectedArticle'){
@@ -26,6 +34,14 @@
                     .then(function (article) {
                         model.article = article;
                         model.articleSaved = true;
+                        if(model.userId === article._user){
+                            model.showDeleteArticle = true;
+                            model.showReportArticle = false;
+                        }
+                        else{
+                            model.showDeleteArticle = false;
+                            model.showReportArticle = true;
+                        }
                     },function (err) {
                         model.message = "Error while fetching the article";
                     })
@@ -64,6 +80,28 @@
                         },function (err) {
                             console.log(err);
                         })
+                })
+        }
+        function deleteArticle(articleId,userId,articleType) {
+            nh_articleService.deleteArticle(articleId,userId,articleType)
+                .then(function (msg) {
+                    if(articleType ==="NEWS"){
+                        $location.url("/saved/article")
+                    }
+                    else{
+                        $location.url("/publisher/article")
+                    }
+
+                })
+        }
+        function reportArticle(articleId,article) {
+            article.reported = true;
+            nh_articleService.updatePublishedArticle(articleId,article)
+                .then(function (article) {
+                    model.message = "Article Reported";
+                },function () {
+                    model.message = "error while reporting article";
+
                 })
         }
         function reportComment(commentId,comment) {

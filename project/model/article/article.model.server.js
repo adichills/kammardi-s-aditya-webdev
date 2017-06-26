@@ -49,8 +49,18 @@ function fetchArticleById(articleId) {
 function updatePublishedArticle(articleId,article) {
     return nh_articleModel.update({_id:articleId},{$set:article});
 }
-function deleteArticle(articleId) {
-    return nh_articleModel.remove({_id:articleId});
+function deleteArticle(articleId,userId,articleType) {
+    return nh_articleModel.remove({_id:articleId})
+        .then(function (msg) {
+            if(articleType ==="NEWS"){
+                nh_userModel.removeSavedArticlesFromUser(userId,articleId)
+                return;
+            }
+            else{
+                nh_userModel.removeAuthoredArticlesFromUser(userId,articleId);
+                return;
+            }
+        });
 }
 
 function fetchArticlesCountByUserId(userId) {
