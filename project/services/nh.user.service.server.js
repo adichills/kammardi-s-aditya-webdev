@@ -5,6 +5,7 @@ var nh_userModel = require('../model/user/user.model.server');
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var bcrypt = require("bcrypt-nodejs");
 
@@ -17,10 +18,21 @@ var facebookConfig = {
 
 };
 
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+
+
+
+
 
 
 passport.use(new LocalStrategy({passReqToCallback:true},localStrategy));
 passport.use(new FacebookStrategy(facebookConfig,facebookStrategy));
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
 
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -59,6 +71,51 @@ app.get('/auth/facebook/nh/callback',
         successRedirect: '/project/index.html#!/profile/profile',
         failureRedirect: '/project/index.html#!/login'
     }));
+
+app.get('/auth/nh/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+app.get('/auth/google/nh/callback',
+    passport.authenticate('google', {
+        successRedirect: '/project/index.html#!/profile/profile',
+        failureRedirect: '/project/index.html#!/login'
+    }));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    nh_userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 function changePassword(req,res) {
     var userId = req.params['userId'];

@@ -16,6 +16,10 @@ var nh_userSchema = mongoose.Schema({
         id:    String,
         token: String
     },
+    google:{
+        id:String,
+        token:String
+    },
     followers:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}],
     following:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_UserModel"}],
     savedArticles:[{type:mongoose.Schema.Types.ObjectId,ref:"NH_ArticleModel"}],
