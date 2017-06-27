@@ -3,7 +3,7 @@
         .module("NH")
         .controller("nh_manageUserController",nh_manageUserController);
 
-    function nh_manageUserController(currentUser,$location,$routeParams,nh_userService,$route) {
+    function nh_manageUserController(currentUser,$location,$routeParams,nh_userService,$route,$window) {
 
         var model = this;
         model.mode = $routeParams["mode"];
@@ -166,10 +166,25 @@
             model.showChangePassword = false;
         }
         function deleteUser(userId) {
+
             nh_userService.deleteUser(userId)
                 .then(function () {
-                    $location.url("/admin/user");
+
+                    if(model.mode ==='profile'){
+                        logout();
+                    }else{
+                        $location.url("/admin/user");
+                    }
                 })
+        }
+
+        function logout() {
+            nh_userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                    $window.location.reload();
+                });
         }
 
 

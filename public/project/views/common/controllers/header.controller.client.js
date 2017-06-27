@@ -3,7 +3,7 @@
         .module("NH")
         .controller("nh_headerController",nh_headerController);
 
-    function nh_headerController($routeParams,nh_userService,$location) {
+    function nh_headerController($routeParams,nh_userService,$location,$window) {
 
         var model = this;
         model.logout = logout;
@@ -26,6 +26,7 @@
                     model.showRegister = false;
                     model.showProfile = true;
                     model.showLogout = true;
+                    model.username = user.username;
                     if (user.role==='PUBLISHER'){
                         model.showPublishedArticle = true;
                     }
@@ -46,6 +47,7 @@
                 .logout()
                 .then(function () {
                     $location.url('/login');
+                    $window.location.reload();
                 });
         }
 

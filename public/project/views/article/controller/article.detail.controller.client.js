@@ -35,7 +35,7 @@
 
             if(model.articleId ==='selectedArticle'){
                model.article =  nh_newsMediaService.getSelectedArticle();
-               if (typeof model.article ==='undefined' || model.article === null){
+               if (typeof model.userId ==='undefined' || model.userId === null){
                    //redirect to newshub home
                    $location.url("/");
                }

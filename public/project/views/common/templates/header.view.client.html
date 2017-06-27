@@ -17,7 +17,7 @@
                     <li ng-show="model.showAdmin"><a class="btn" href="#!/admin" data-toggle="collapse" data-target="#navbar">Admin</a></li>
                     <li ng-show="model.showLogin"><a class="btn" href="#!/login" data-toggle="collapse" data-target="#navbar">Login</a></li>
                     <li ng-show="model.showRegister"><a class="btn" href="#!/register" data-toggle="collapse" data-target="#navbar">Register</a></li>
-                    <li ng-show="model.showProfile"><a class="btn" href="#!/profile/profile" data-toggle="collapse" data-target="#navbar">Profile</a></li>
+                    <li ng-show="model.showProfile"><a class="btn" href="#!/profile/profile" data-toggle="collapse" data-target="#navbar">{{model.username}} - Profile</a></li>
                     <li ng-show="model.showPublishedArticle"><a class="btn" href="#!/publisher/article" data-toggle="collapse" data-target="#navbar">Published</a></li>
                     <li ng-show="model.showLogout"><a class="btn" ng-click="model.logout()" data-toggle="collapse" data-target="#navbar">Logout</a></li>
                 </ul>
