@@ -39,7 +39,7 @@
         function userFound(found){
 
 
-                $window.location.reload();
+
 
                 if(found.role ==="ADMIN"){
                     $location.url('/admin');
@@ -51,7 +51,7 @@
                     $location.url('/publisher/article')
                 }
 
-
+            $window.location.reload();
 
 
 

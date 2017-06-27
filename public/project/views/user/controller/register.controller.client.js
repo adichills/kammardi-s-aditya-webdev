@@ -53,8 +53,9 @@
                     };
                     nh_userService.register(newUser)
                         .then(function (newUser) {
-                            $window.location.reload();
+                            //$window.location.reload();
                             $location.url('/profile/profile');
+                            $window.location.reload();
                         });
 
                 });
