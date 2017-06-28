@@ -19,7 +19,7 @@
             <div class="col-sm-12" ng-repeat="article in model.articles">
 
                 <div class="thumbnail">
-                    <div class="nh-toolbar-1">
+                    <div ng-if="model.showCreateArticle" class="nh-toolbar-1">
                         <a class="btn btn-default" type="button"
                            href="#!/publisher/article/edit/{{article._id}}">
                             <span class="glyphicon glyphicon-edit"></span>
