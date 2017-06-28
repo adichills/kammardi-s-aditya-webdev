@@ -9,6 +9,7 @@
         model.mode = $routeParams["mode"];
         model.headerText = "Manage Users";
 
+
         model.createNewUser = createNewUser;
         model.addRole = addRole;
         model.removeRole = removeRole;
@@ -63,6 +64,8 @@
         }
 
         function init() {
+            //Bug fix
+            model.showSavedArticles = true;
             if(model.mode === 'create'){
                 model.user = {role:[]};
                 model.roles = ['ADMIN','NORMAL','PUBLISHER'];
@@ -70,6 +73,7 @@
                 model.showCreate = true;
                 model.showChangePassword=false;
                 model.showNewPassword = false;
+                model.showSavedArticles = false
 
 
             }
@@ -79,6 +83,7 @@
                     model.showChangePassword = true;
                     model.showNewPassword = false;
                     model.showUpdate = true;
+
                 }
                 else{
                     model.showChangePassword = false;
