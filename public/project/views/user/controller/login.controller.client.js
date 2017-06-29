@@ -51,7 +51,10 @@
                     $location.url('/publisher/article')
                 }
 
-            $window.location.reload();
+            setTimeout(function(){
+                window.location.reload();
+            });
+            //$window.location.reload();
 
 
 
