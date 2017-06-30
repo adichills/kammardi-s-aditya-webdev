@@ -5,11 +5,17 @@
 
     function nh_newsMediaController(currentUser,$location,nh_newsMediaService,nh_dashBoardService) {
         var model = this;
-        model.newsMedia = [];
-        model.searchResults =[];
+
+        function initializeParameters() {
+            model.newsMedia = [];
+            model.searchResults =[];
+
+            model.showAddtoDashboard = false;
+            model.dashboard = {};
+        }
+        initializeParameters();
+
         model.searchForNewsMedia = searchForNewsMedia;
-        model.showAddtoDashboard = false;
-        model.dashboard = {};
         
         model.addNewsMediaToDashboard = addNewsMediaToDashboard;
         if(currentUser._id){

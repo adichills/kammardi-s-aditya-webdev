@@ -6,13 +6,19 @@
     function nh_articleDetailController(currentUser,$location,$routeParams,nh_newsMediaService,nh_articleService,nh_commentService) {
 
         var model = this;
-        model.userId = currentUser._id;
-        model.articleId = $routeParams['articleId'];
-        model.article = {};
-        model.comments = [];
-        model.articleSaved = false;
-        model.showReportArticle = false;
-        model.showDeleteArticle = false;
+
+        function initializeParameters() {
+            model.userId = currentUser._id;
+            model.articleId = $routeParams['articleId'];
+            model.article = {};
+            model.comments = [];
+            model.articleSaved = false;
+            model.showReportArticle = false;
+            model.showDeleteArticle = false;
+
+        }
+        initializeParameters();
+
 
         model.saveArticle = saveArticle;
 

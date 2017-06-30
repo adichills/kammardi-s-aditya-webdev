@@ -4,8 +4,12 @@
         .controller("nh_publishedEditArticleController",nh_publishedEditArticleController)
     function nh_publishedEditArticleController($location,currentUser,nh_articleService,nh_userService,$routeParams) {
         var model = this;
-        model.articleId = $routeParams['articleId'];
-        model.userId = currentUser._id;
+
+        function initializeParameters() {
+            model.articleId = $routeParams['articleId'];
+            model.userId = currentUser._id;
+        }
+        initializeParameters();
 
         model.updatePublishedArticle = updatePublishedArticle;
         model.deleteArticle = deleteArticle;

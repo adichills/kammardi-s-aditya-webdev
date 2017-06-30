@@ -5,13 +5,17 @@
 
     function nh_dashBoardController(currentUser,$location,nh_dashBoardService,nh_newsMediaService) {
         var model = this;
-        model.dashboard = {};
-        model.userId = currentUser._id;
-        model.articles = [];
-        model.news_media = [];
-        model.user_news_media = [];
-        model.selectedNewsMedia = {};
-        model.showMedia = true;
+
+        function initializeParameters() {
+            model.dashboard = {};
+            model.userId = currentUser._id;
+            model.articles = [];
+            model.news_media = [];
+            model.user_news_media = [];
+            model.selectedNewsMedia = {};
+            model.showMedia = true;
+        }
+        initializeParameters();
 
         model.fetchArticlesByNewsMediaId = fetchArticlesByNewsMediaId;
         model.selectNewsMedia = selectNewsMedia;

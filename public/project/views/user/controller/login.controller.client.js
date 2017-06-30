@@ -10,7 +10,7 @@
 
         var model = this;
         model.login = login;
-        model.selectedRole = ""
+
 
 
         function login(username, password) {

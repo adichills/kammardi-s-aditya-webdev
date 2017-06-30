@@ -6,8 +6,13 @@
     function nh_manageUserController(currentUser,$location,$routeParams,nh_userService,$route,$window) {
 
         var model = this;
-        model.mode = $routeParams["mode"];
-        model.headerText = "Manage Users";
+
+        function initializeParameters() {
+            model.mode = $routeParams["mode"];
+            model.headerText = "Manage Users";
+
+        }
+        initializeParameters();
 
 
         model.createNewUser = createNewUser;

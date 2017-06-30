@@ -9,8 +9,13 @@
     function nh_userSearchController(currentUser,$location,$routeParams,nh_userService) {
 
         var model = this;
-        model.userId = currentUser._id;
-        model.user = currentUser;
+
+        function initializeParameters() {
+            model.userId = currentUser._id;
+            model.user = currentUser;
+
+        }
+        initializeParameters();
 
         model.searchUser = searchUser;
         model.follow = follow;

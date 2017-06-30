@@ -9,11 +9,17 @@
     function nh_savedArticleController(currentUser,$location,$routeParams,nh_articleService,nh_userService) {
 
         var model = this;
-        model.userId = currentUser._id;
-        model.articles = [];
-        model.mode = 'Saved';
+
+        function initializeParameters() {
+            model.userId = currentUser._id;
+            model.articles = [];
+            model.mode = 'Saved';
+            model.username = $routeParams['username'];
+
+        }
+        initializeParameters();
+
         model.selectArticle = selectArticle;
-        model.username = $routeParams['username'];
 
         function init1() {
             if (model.username !==null && typeof model.username !== 'undefined'){

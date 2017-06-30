@@ -19,14 +19,17 @@
 
     function nh_adminUserSearchController($location,currentUser,$routeParams,nh_userService) {
         var model = this;
-        model.userId = currentUser._id;
-        model.user = currentUser;
 
         model.searchUser = searchUser;
-        model.showCreate = true;
+
         model.userDetail = userDetail;
 
-        //model.user = nh_userService.findUserByUserId(model.userId);
+        function initialzieParameters() {
+            model.userId = currentUser._id;
+            model.user = currentUser;
+            model.showCreate = true;
+        }
+        initialzieParameters();
 
         function userDetail(username) {
             $location.url("/manage/user/edit/" + username);
