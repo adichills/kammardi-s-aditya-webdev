@@ -5,7 +5,7 @@
     angular
         .module('NH')
         .controller('nh_profileController', nh_profileController);
-
+    //Not used anymore
     function nh_profileController(currentUser,$location,$routeParams,nh_userService) {
 
         var model = this;
