@@ -32,7 +32,9 @@
             model.dashboard.news_media.splice(index,1);
             nh_dashBoardService.updateDashboard(model.dashboard._id,model.dashboard)
                 .then(function (dashboard) {
-                    console.log(dashboard);
+                    initializeParameters();
+                    init1();
+                    init2();
                 })
         }
 

@@ -40,12 +40,12 @@
                 <div ng-if="model.showMedia">
                     <div class="thumbnail col-xs-12 col-md-4 nh-thumbnail-height" ng-repeat="source in model.user_news_media">
                         <div class="nh-toolbar-2">
-                            <a class="btn btn-default"
+                            <a class="btn small-btn btn-default"
                                ng-click="model.selectNewsMedia(source.id,source.sortBysAvailable[0])"
                                type="button">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
-                            <a class="btn btn-default"
+                            <a class="btn small-btn btn-default"
                                ng-click="model.removeNewsMedia(source.id)"
                                type="button">
                                 <span class="glyphicon glyphicon-remove"></span>

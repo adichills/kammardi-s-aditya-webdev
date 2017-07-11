@@ -1,5 +1,5 @@
 <div>
-    <h1>Register</h1>
+    <h1 class="grey-heading">Register</h1>
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
@@ -15,7 +15,7 @@
            ng-model="password2"
            class="form-control"
            placeholder="verify password"/>
-    <label for="role">Register as</label>
+    <label class="grey-heading" for="role">Register as</label>
     <select id="role"
             ng-model="model.selectedRole"
             class="form-control">
