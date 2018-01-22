@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <input ng-model="accessCode" type="text" placeholder="Enter the Acces code" class="form-control">
+    <a class="btn-block btn-primary btn" ng-click="model.fetchAccessToken(accessCode)">
+        Get Access Token
+    </a>
+
+    <input ng-model="model.accessToken" type="text" placeholder="" class="form-control">
+    <a class="btn-block btn-primary btn" ng-click="model.authenticate(model.accessToken)">
+        Authenticate
+    </a>
+    <a class="btn-block btn-primary btn" href="#!/list/{{model.accessToken}}">
+        List
+    </a>
+    <a class="btn-block btn-primary btn" href="#!/contact/{{model.accessToken}}">
+        Create Contact
+    </a>
+    <a class="btn-block btn-sucess btn" ng-click="model.createContact(model.accessToken)">
+        Create default contact
+    </a>
+
+</div>

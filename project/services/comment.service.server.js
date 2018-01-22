@@ -12,6 +12,7 @@ app.put('/api/nh/comment/:commentId',updateComment);
 app.get('/api/nh/admin/reportedComments',fetchReportedComments);
 
 function addComment(req,res) {
+    console.log(req.method);
     var newCommentObject = req.body;
     nh_commentModel.addComment(newCommentObject)
         .then(function (comment) {
@@ -22,6 +23,7 @@ function addComment(req,res) {
 }
 
 function fetchReportedComments(req,res) {
+    console.log(req.method);
     nh_commentModel.fetchReportedComments()
         .then(function (comments) {
             res.json(comments);

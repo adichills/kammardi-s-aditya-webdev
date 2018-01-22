@@ -27,4 +27,5 @@ require('./services/dashboard.service.server');
 require('./services/article.service.server');
 require('./services/comment.service.server');
 require('./services/admin.service.server');
+require('../polisapi/services/polisapi.server');
 

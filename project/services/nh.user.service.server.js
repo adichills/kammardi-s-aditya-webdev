@@ -232,7 +232,7 @@ function deleteUser(req,res){
         });
 }
 
-function unregister(req,res) {
+function  unregister(req,res) {
     var userId = req.user._id;
     nh_userModel
         .deleteUser(userId)
