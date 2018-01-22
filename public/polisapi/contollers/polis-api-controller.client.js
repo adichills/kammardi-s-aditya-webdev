@@ -31,6 +31,13 @@
         var token = $routeParams['token'];
         var address = {
             country:model.country,
+            "position": {
+                "type": "Point",
+                "coordinates": [
+                    -71.067513,
+                    42.3520436
+                ]
+            },
             streetAddress: {
                 formatted : model.number + " " + model.route,
                 number: model.number,
